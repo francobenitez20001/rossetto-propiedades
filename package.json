@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy":"git push heroku master"
+    "deploy": "git push heroku master"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -14,6 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "babel-preset-next": "^1.4.0",
     "bootstrap": "^5.0.1",
     "dotenv": "^10.0.0",
     "next": "10.2.2",
@@ -22,5 +23,8 @@
     "react-dom": "17.0.2",
     "styled-components": "^5.3.0",
     "sweetalert2": "^11.0.9"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.12.0"
   }
 }
