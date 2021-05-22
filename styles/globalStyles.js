@@ -8,8 +8,8 @@ export default createGlobalStyle`
         overflow-x:hidden !important;
     }
 
-    body::-webkit-scrollbar {
-        width: 5px;     /* Tamaño del scroll en vertical */
+    /*body::-webkit-scrollbar {
+        width: 5px;  
     }
 
     body::-webkit-scrollbar-thumb {
@@ -19,7 +19,7 @@ export default createGlobalStyle`
     body::-webkit-scrollbar-thumb:hover {
         background: #b3b3b3;
         box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-    }
+    }*/
 
     h1,h2,h3,h4,h5,h6{
         font-family:'Open Sans',sans-serif;
@@ -39,5 +39,7 @@ export default createGlobalStyle`
         --mainblue:#003da5;
         --white:#fff;
         --secondary:#7e7e7e;
+
+        --primaryhover:#fff;
     }
 `;
