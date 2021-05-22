@@ -25,7 +25,7 @@ const Banner = () => {
 }
 
 const Slide = styled.div`
-    background:url('https://images.unsplash.com/photo-1610309182791-799e4b55f76d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80');
+    background:url('./banner.jpeg');
     height:100vh;
     background-repeat:no-repeat;
     background-size:cover;
@@ -43,9 +43,8 @@ const Slide = styled.div`
         flex-direction:column;
         justify-content:center;
         @media(max-width:768px){
-            justify-content:start;
+            justify-content:center;
             text-align:center;
-            padding-top:100px;
         }
     }
     
