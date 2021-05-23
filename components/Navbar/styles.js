@@ -7,13 +7,13 @@ export const Nav = styled.nav`
     background-color:var(--white);
     display:flex;
     align-items:center;
-    border-top:7px solid var(--primary);
+    border-top:5px solid var(--primary);
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
     >header{
         display:flex;
         align-items:center;
         justify-content:space-between;
-        padding:10px 0px;
+        padding:2px 0px;
         @media(max-width:768px){
             padding:10px;
         }
@@ -31,7 +31,7 @@ export const Nav = styled.nav`
 
 
 export const ContenedorLogo = styled.div`
-    width:260px;
+    width:240px;
 `;
 
 export const Botonera = styled.div`
@@ -73,11 +73,12 @@ export const List = styled.ul`
 
 export const Item = styled.li`
     display:inline-block;
-    margin:0px 20px;
+    margin:0px 17px;
     &:last-child{
         margin: 0px 0px 0px 20px; 
     }
-    >a{        
+    >a{     
+        font-size:14px;
         font-weight: 500;
         transition: all .5s ease;
         color:var(--secondary);

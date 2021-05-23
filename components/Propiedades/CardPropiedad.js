@@ -24,6 +24,8 @@ const Card = styled.div`
     position: relative;
     transition:all .3s ease;
     cursor: pointer;
+    width: 95%;
+    margin: auto auto auto 0px;
     &:hover{
         filter: brightness(50%); // Más oscura
         box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);

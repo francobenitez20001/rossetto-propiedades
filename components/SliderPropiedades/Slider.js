@@ -9,25 +9,25 @@ const SliderPropiedades = () => {
                 <h2>propiedades destacadas</h2>
                 <span className="d-block d-md-none">Arrastra hacia la izquierda para ver las propiedades</span>
                 <SlideX pageLength={3} classItem="boxSliderPropiedades" idSlider="slider-propiedades">
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-1">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-2">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-2">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-2">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-2">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-2">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades mx-2">
+                    <div className="col-12 col-sm-6 col-md-4 boxSliderPropiedades">
                         <CardPropiedad/>
                     </div>
                 </SlideX>

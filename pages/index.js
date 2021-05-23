@@ -2,6 +2,7 @@ import Encabezado from '../components/encabezado';
 import Banner from '../components/Banner/banner';
 import Categorias from '../components/Categorias/categorias';
 import SliderPropiedades from '../components/SliderPropiedades/Slider';
+import FormBusqueda from '../components/FormBusqueda/form';
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
       </div>
       <SliderPropiedades/>
       <br/>
+      <FormBusqueda/>
+      <br/><br/>
     </>
   )
 }
