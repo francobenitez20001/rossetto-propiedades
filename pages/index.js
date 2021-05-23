@@ -3,6 +3,7 @@ import Banner from '../components/Banner/banner';
 import Categorias from '../components/Categorias/categorias';
 import SliderPropiedades from '../components/SliderPropiedades/Slider';
 import FormBusqueda from '../components/FormBusqueda/form';
+import Footer from '../components/Footer/footer';
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       <SliderPropiedades/>
       <br/>
       <FormBusqueda/>
-      <br/><br/>
+      <Footer/>
     </>
   )
 }

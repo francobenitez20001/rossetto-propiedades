@@ -34,6 +34,9 @@ export default createGlobalStyle`
         text-decoration:none;
     }
 
+    footer{
+        border-top:3px solid #a71b20;
+    }
 
     :root{
         --primary:#a71b20;
