@@ -95,6 +95,9 @@ const Flechas = styled.div`
     justify-content: space-between;
     width: 100%;
     >svg{
+        @media(max-width:768px){
+            display: none;
+        }
         width: 50px;
         background-color: var(--primary);
         color: var(--white);
@@ -110,12 +113,22 @@ const Wrapper = styled.div`
     padding: 20px 5px;
     position: relative;
     width: 100%;
-    &:first-child{
-        margin:0px 0px;
-    }
     >div{
         transition: all .5s ease;
         margin:0px 20px;
+    }
+
+    @media(max-width:768px){
+        overflow-x: auto;
+        &::-webkit-scrollbar {
+            width: 3px;     /* Tamaño del scroll en vertical */
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            display:block;
+            background: var(--primary);
+            border-radius: 4px;
+        }
     }
 `;
  
