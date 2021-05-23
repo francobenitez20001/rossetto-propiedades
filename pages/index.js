@@ -1,6 +1,7 @@
 import Encabezado from '../components/encabezado';
 import Banner from '../components/Banner/banner';
 import Categorias from '../components/Categorias/categorias';
+import SliderPropiedades from '../components/SliderPropiedades/Slider';
 
 export default function Home() {
   return (
@@ -11,6 +12,8 @@ export default function Home() {
       <div className="container my-5">
         <Categorias/>
       </div>
+      <SliderPropiedades/>
+      <br/>
     </>
   )
 }
