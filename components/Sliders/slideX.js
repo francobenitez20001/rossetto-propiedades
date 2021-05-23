@@ -115,7 +115,6 @@ const Wrapper = styled.div`
     width: 100%;
     >div{
         transition: all .5s ease;
-        margin:0px 20px;
     }
 
     @media(max-width:768px){

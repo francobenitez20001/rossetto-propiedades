@@ -5,10 +5,9 @@ const CardCategoria = (props) => {
         <Card>
             <Header>
                 <FotoCat src={"https://alejandrobm.com/wp-content/uploads/2020/07/Grilla-de-PortadaArtboard-2-copy.jpg"}/>
+                <h3>{props.categoria}</h3>
             </Header>
             <Body>
-                <h3>{props.categoria}</h3>
-                <span>{props.descripcion}</span>
             </Body>
             <Footer>
                 <Boton>Ver publicaciones</Boton>
@@ -20,11 +19,10 @@ const CardCategoria = (props) => {
 const Card = styled.div`
     position:relative;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
-    height:350px;
     background-color:var(--white);
     transition:box-shadow .3s ease;
     cursor: pointer;
-    border-radius: 10px;
+    //border-radius: 10px;
     &:hover{
         box-shadow: 2px 2px 2px 5px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 5px rgba(0,0,0,0.12);
     }
@@ -32,32 +30,33 @@ const Card = styled.div`
 
 const Header = styled.div`
     width:100%;
-    height:50%;
+    max-height:50%;
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    opacity: 0.99;
+    >h3{
+        position: absolute;
+        top:50%;
+        left: 0;
+        right: 0;
+        text-align:center;
+        font-weight:600;
+        font-size:22px;
+        color:var(--white);
+    }
 `;
 
 const FotoCat = styled.img`
     width:100%;
-    max-height:175px;
+    filter: brightness(30%); // Más oscura
 `;
 
 const Body = styled.section`
-    padding:5px 10px;
-    >h3{
-        text-align:center;
-        font-weight:600;
-        font-size:22px;
-        color:var(--mainblue);
-    }
-
-    >span{
-        color:var(--primary)!important;
-        font-weight:600;
-        font-size:14px;
-    }
+    
 `;
 
 const Footer = styled.div`
-    position:absolute;
+    position:relative;
     bottom:0;
     width:100%;
     padding:15px 0px;
@@ -68,7 +67,7 @@ const Boton = styled.button`
     border:none;
     padding:9px 13px;
     border-radius:10px;
-    background-color:var(--mainblue);
+    background-color:var(--primary);
     color:var(--white);
     font-family:'Open Sans',sans-serif;
     font-size:12px;
