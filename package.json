@@ -8,6 +8,7 @@
     "start": "next start -p $PORT",
     "deploy": "git push heroku master"
   },
+  "cacheDirectories": [".next/cache"],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
