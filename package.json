@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p process.env.PORT",
+    "start": "next start -p $PORT",
+    "heroku-postbuild":"npm run build",
     "deploy": "git push heroku master"
   },
   "cacheDirectories": [".next/cache"],
