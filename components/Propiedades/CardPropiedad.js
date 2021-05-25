@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 const CardPropiedad = (props) => {
     return (
-        <Card>
+        <Card width={props.fullWidth}>
             <Header>
-                <Image 
+                <Image
                     src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
                     height={300}
                     width={500}
@@ -29,7 +29,7 @@ const Card = styled.div`
     position: relative;
     transition:all .3s ease;
     cursor: pointer;
-    width: 95%;
+    width: ${props=>props.width ? 'auto' : '95%'};
     margin: auto auto auto 0px;
     &:hover{
         filter: brightness(50%); // Más oscura

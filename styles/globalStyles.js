@@ -10,7 +10,7 @@ export default createGlobalStyle`
     }
 
     /*body::-webkit-scrollbar {
-        width: 5px;  
+        width: 5px;
     }
 
     body::-webkit-scrollbar-thumb {
@@ -45,5 +45,7 @@ export default createGlobalStyle`
         --secondary:#7e7e7e;
 
         --primaryhover:#fff;
+
+        --primaryrgb:rgb(167,27,32);
     }
 `;
