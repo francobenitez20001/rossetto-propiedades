@@ -42,6 +42,9 @@ const Titulo = styled.h2`
     font-weight: 600;
     text-transform:uppercase;
     font-size: 25px;
+    @media(max-width:768px){
+      text-align: center;
+    }
 `;
 
 const Item = styled.div`
@@ -78,5 +81,5 @@ const Descripcion = styled.span`
     line-height: 1.5;
     color: var(--secondary);
 `;
- 
+
 export default InfoContacto;

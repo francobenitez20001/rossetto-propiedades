@@ -6,7 +6,7 @@ export default createGlobalStyle`
         padding:0;
         box-sizing:border-box;
         overflow-x:hidden !important;
-        background-color:var(#fafafa);
+        //background-color:#fafafa;
     }
 
     /*body::-webkit-scrollbar {
