@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3000",
-    "heroku-postbuild": "npm run build",
-    "deploy": "git push heroku master"
+    "start": "next start",
+    "export": "next export"
   },
   "cacheDirectories": [
     ".next/cache"
@@ -23,12 +22,23 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "image-trace-loader": "^1.0.2",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^9.0.0",
+    "jimp": "^0.16.1",
+    "lqip-loader": "^2.2.1",
     "next": "10.2.2",
+    "next-optimized-images": "^2.6.2",
     "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "responsive-loader": "^2.3.0",
     "styled-components": "^5.3.0",
-    "sweetalert2": "^11.0.9"
+    "svg-sprite-loader": "^6.0.7",
+    "sweetalert2": "^11.0.9",
+    "webp-loader": "^0.6.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.12.0",

@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import Image from 'next/image';
 
 const CardPropiedad = (props) => {
   return (
       <Card width={props.fullWidth}>
           <Header>
-              <Image
+              <img
                   src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
-                  height={300}
-                  width={500}
               />
           </Header>
           <Footer>
