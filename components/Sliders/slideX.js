@@ -83,9 +83,9 @@ const SlideX = (props) => {
 
     return (
         <Slide>
-            <Wrapper id={props.idSlider}>
+            <Wrapper id={props.idSlider} sliderMobile={props.sliderMobile}>
                 {props.children}
-              <Flechas>
+              <Flechas sliderMobile={props.sliderMobile}>
                   <FontAwesomeIcon icon={faArrowLeft} onClick={back} style={{visibility:pagination.activePage==1 ? 'hidden' : 'visible'}}/>
                   <FontAwesomeIcon icon={faArrowRight} onClick={next} style={{visibility:pagination.activePage == props.pages ? 'hidden' : 'visible'}}/>
               </Flechas>
@@ -117,7 +117,7 @@ const Flechas = styled.div`
     padding: 0px 20px;
     >svg{
         @media(max-width:768px){
-            display: none;
+          display: ${props=>props.sliderMobile ? 'block' : 'none'};
         }
         position: relative;
         cursor: pointer;
@@ -142,12 +142,13 @@ const Wrapper = styled.div`
 
     @media(max-width:768px){
         overflow-x: auto;
+        padding: 20px 5px 20px 0px;
         &::-webkit-scrollbar {
             width: 3px;     /* Tamaño del scroll en vertical */
         }
 
         &::-webkit-scrollbar-thumb {
-            display:block;
+            display:${props=>props.sliderMobile ? 'none' : 'block'};
             background: var(--primary);
             border-radius: 4px;
         }
@@ -177,6 +178,9 @@ const Indicadores = styled.div`
       display:block;
       background: var(--primary);
       border-radius: 10px;
+  }
+  @media(max-width:768px){
+    padding: 0px 0px 20px 0px;
   }
 `;
 
