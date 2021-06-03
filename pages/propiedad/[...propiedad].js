@@ -20,6 +20,7 @@ const Propiedad = (props) => {
           </div>
         </div>
       </div>
+      <br/>      <br/>      <br/>
     </>
   );
 }

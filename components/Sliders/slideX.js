@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from "sweetalert2";
+import { doc } from "prettier";
 
 const SlideX = (props) => {
 
@@ -34,6 +35,12 @@ const SlideX = (props) => {
         });
     },[]);
 
+    useEffect(() => {
+      if(props.indicators && pagination.pages>0){
+        actualizarIndicadores();
+      }
+    }, [pagination])
+
     const back = ()=>{
       const divs = document.querySelectorAll(`.${props.classItem}`);
       for (let index = 0; index < divs.length; index++) {
@@ -62,6 +69,13 @@ const SlideX = (props) => {
       })
     }
 
+    const actualizarIndicadores = ()=>{
+      const contentIndicadores = document.getElementById(`${props.idIndicadores}`);
+      let divs = [...contentIndicadores.children];
+      divs.forEach(indicador=>indicador.classList.remove('active'));
+      contentIndicadores.children[pagination.activePage - 1].classList.add('active');
+    }
+
     if(!props.pages || !props.classItem || !props.idSlider){
         Swal.fire('Error slider','Los parametros pageLength, classItem y idSlider son necesarios.','warning');
         return null;
@@ -76,9 +90,15 @@ const SlideX = (props) => {
                   <FontAwesomeIcon icon={faArrowRight} onClick={next} style={{visibility:pagination.activePage == props.pages ? 'hidden' : 'visible'}}/>
               </Flechas>
             </Wrapper>
-            <div>
-              <span>asd</span>
-            </div>
+            {props.indicators ?
+              <Indicadores id={props.idIndicadores}>
+                {props.indicators.map(img=>(
+                  <div className="col-2" key={img}>
+                    <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
+                  </div>
+                ))}
+              </Indicadores>
+            : null}
         </Slide>
     );
 }
@@ -132,6 +152,32 @@ const Wrapper = styled.div`
             border-radius: 4px;
         }
     }
+`;
+
+const Indicadores = styled.div`
+  overflow-x: auto;
+  display: flex;
+  padding: 0px 0px 20px 10px;
+  width: 100%;
+  >div{
+    &.active{
+      filter: brightness(240%); // Más oscura
+      border:2px solid var(--primary);
+    }
+    margin:0px 7px
+  }
+  >div>img{
+    filter: brightness(30%); // Más oscura
+  }
+  &::-webkit-scrollbar {
+      width: 3px;     /* Tamaño del scroll en vertical */
+  }
+
+  &::-webkit-scrollbar-thumb {
+      display:block;
+      background: var(--primary);
+      border-radius: 10px;
+  }
 `;
 
 export default SlideX;
