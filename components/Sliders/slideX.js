@@ -5,67 +5,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from "sweetalert2";
 
 const SlideX = (props) => {
-    
-    const [scroll, setScroll] = useState(null);
+
     const [pagination, setPagination] = useState({
         fullWidthValue:null,
         pageScrollValue:null,
-        childValue:null,
-        childrens:null,
-        minScroll:null,
-        maxScroll:null
+        pages:0,
+        activePage:1,
+        scrollNextPage:0,
+        scrollPreviousPage:0
     });
 
     useEffect(()=>{
-        if(!props.pageLength || !props.classItem || !props.idSlider){
+        if(!props.pages || !props.classItem || !props.idSlider){
             return;
         }
         let contentSlide = document.querySelector(`#${props.idSlider}`);
-        let childrens = contentSlide.children.length;
-
         let scrollWidth = contentSlide.scrollWidth;
-        let childValue = scrollWidth/childrens;
-        let pageScrollValue = childValue*props.pageLength;
+        let paginas = props.pages;
+        let pageScrollValue = scrollWidth/paginas;
         setPagination({
             ...pagination,
             fullWidthValue:scrollWidth,
             pageScrollValue,
-            childValue:childValue,
-            childrens,
-            minScroll:pageScrollValue,
-            maxScroll:pageScrollValue*props.pageLength
+            pages:paginas,
+            pageScrollValue,
+            scrollNextPage:pageScrollValue,
+            activePage:1
         });
-        setScroll(pageScrollValue);
     },[]);
 
-
     const back = ()=>{
-        const divs = document.querySelectorAll(`.${props.classItem}`);
-        for (let index = 0; index < divs.length; index++) {
-            const element = divs[index];
-            if(parseInt(scroll)==parseInt((pagination.pageScrollValue*2))){
-                element.style.transform = `translateX(0px)`;
-            }else{
-                element.style.transform = `translateX(-${pagination.pageScrollValue}px)`;
-            }
-        }
-        if(scroll == (pagination.pageScrollValue*2)){
-            setScroll(pagination.pageScrollValue);
-            return;
-        }
-        setScroll(scroll - pagination.pageScrollValue);
+      const divs = document.querySelectorAll(`.${props.classItem}`);
+      for (let index = 0; index < divs.length; index++) {
+        const element = divs[index];
+        element.style.transform = `translateX(-${pagination.scrollPreviousPage}px)`;
+      }
+      setPagination({
+        ...pagination,
+        activePage:pagination.activePage - 1,
+        scrollNextPage:pagination.pageScrollValue * (pagination.activePage - 1),
+        scrollPreviousPage:(pagination.activePage<=2) ? 0 : pagination.scrollPreviousPage - pagination.pageScrollValue
+      })
     }
 
     const next = ()=>{
-        const divs = document.querySelectorAll(`.${props.classItem}`);
-        for (let index = 0; index < divs.length; index++) {
-            const element = divs[index];
-            element.style.transform = `translateX(-${scroll}px)`;
-        }
-        setScroll(scroll + pagination.pageScrollValue);
+      const divs = document.querySelectorAll(`.${props.classItem}`);
+      for (let index = 0; index < divs.length; index++) {
+        const element = divs[index];
+        element.style.transform = `translateX(-${pagination.scrollNextPage}px)`;
+      }
+      setPagination({
+        ...pagination,
+        activePage:pagination.activePage + 1,
+        scrollNextPage:pagination.pageScrollValue * (pagination.activePage +  1),
+        scrollPreviousPage:((pagination.activePage + 1) > 2) ? pagination.scrollPreviousPage + pagination.pageScrollValue : 0
+      })
     }
 
-    if(!props.pageLength || !props.classItem || !props.idSlider){
+    if(!props.pages || !props.classItem || !props.idSlider){
         Swal.fire('Error slider','Los parametros pageLength, classItem y idSlider son necesarios.','warning');
         return null;
     }
@@ -76,8 +73,8 @@ const SlideX = (props) => {
                 {props.children}
             </Wrapper>
             <Flechas>
-                <FontAwesomeIcon icon={faArrowLeft} onClick={()=>back()} style={{visibility:(parseInt(scroll) == parseInt(pagination.minScroll)) ? 'hidden' : 'visible'}}/>
-                <FontAwesomeIcon icon={faArrowRight} onClick={()=>next()} style={{visibility:(parseInt(scroll) == parseInt(pagination.maxScroll)) ? 'hidden' : 'visible'}}/>
+                <FontAwesomeIcon icon={faArrowLeft} onClick={back} style={{visibility:pagination.activePage==1 ? 'hidden' : 'visible'}}/>
+                <FontAwesomeIcon icon={faArrowRight} onClick={next} style={{visibility:pagination.activePage == props.pages ? 'hidden' : 'visible'}}/>
             </Flechas>
         </Slide>
     );
@@ -122,7 +119,7 @@ const Wrapper = styled.div`
         &::-webkit-scrollbar {
             width: 3px;     /* Tamaño del scroll en vertical */
         }
-        
+
         &::-webkit-scrollbar-thumb {
             display:block;
             background: var(--primary);
@@ -130,5 +127,5 @@ const Wrapper = styled.div`
         }
     }
 `;
- 
+
 export default SlideX;

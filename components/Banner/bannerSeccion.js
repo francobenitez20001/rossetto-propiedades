@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const BannerSeccion = ({seccion}) => {
   return (
-    <Banner id="banner">
+    <Banner id="banner" background={`${process.env.NEXT_PUBLIC_URL}/banner.jpeg`}>
       <div className="container">
         <h1>{seccion}</h1>
       </div>
@@ -11,7 +11,7 @@ const BannerSeccion = ({seccion}) => {
 }
 
 const Banner = styled.section`
-  background: url('./banner.jpeg');
+  background: url(${props=>props.background ? props.background : ''});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

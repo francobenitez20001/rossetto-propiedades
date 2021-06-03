@@ -7,7 +7,7 @@ import {useRouter} from 'next/router';
 
 const Navbar = () => {
     const [showMenuMobile, setShowMenuMobile] = useState(false);
-    
+
     const router = useRouter();
     const {asPath} = router;
 
@@ -25,7 +25,7 @@ const Navbar = () => {
         <Nav>
             <header className="container">
                 <ContenedorLogo>
-                    <img src="./logo.jpg" alt="Rosseto propiedades" className="img-fluid"/>
+                    <img src={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`} alt="Rosseto propiedades" className="img-fluid"/>
                 </ContenedorLogo>
                 <Botonera className={showMenuMobile ? 'show' : ''}>
                     <FontAwesomeIcon icon={faArrowLeft} onClick={()=>setShowMenuMobile(!showMenuMobile)}/>
@@ -61,5 +61,5 @@ const Navbar = () => {
         </Nav>
     );
 }
- 
+
 export default Navbar;
