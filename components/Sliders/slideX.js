@@ -71,11 +71,14 @@ const SlideX = (props) => {
         <Slide>
             <Wrapper id={props.idSlider}>
                 {props.children}
+              <Flechas>
+                  <FontAwesomeIcon icon={faArrowLeft} onClick={back} style={{visibility:pagination.activePage==1 ? 'hidden' : 'visible'}}/>
+                  <FontAwesomeIcon icon={faArrowRight} onClick={next} style={{visibility:pagination.activePage == props.pages ? 'hidden' : 'visible'}}/>
+              </Flechas>
             </Wrapper>
-            <Flechas>
-                <FontAwesomeIcon icon={faArrowLeft} onClick={back} style={{visibility:pagination.activePage==1 ? 'hidden' : 'visible'}}/>
-                <FontAwesomeIcon icon={faArrowRight} onClick={next} style={{visibility:pagination.activePage == props.pages ? 'hidden' : 'visible'}}/>
-            </Flechas>
+            <div>
+              <span>asd</span>
+            </div>
         </Slide>
     );
 }
@@ -91,15 +94,18 @@ const Flechas = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 0px 20px;
     >svg{
         @media(max-width:768px){
             display: none;
         }
-        width: 50px;
+        position: relative;
+        cursor: pointer;
+        width: 35px;
         background-color: var(--primary);
         color: var(--white);
-        padding: 15px;
-        border-radius: 25px;
+        padding: 8px;
+        border-radius: 50%;
         box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
     }
 `;
