@@ -51,7 +51,7 @@ const Valor = styled.span`
   position: absolute;
   top: 5px;
   right: 0;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
   background-color: ${props=>(props.valor=='si')?'var(--maingreen)':'var(--primary)'};
   color: var(--white);

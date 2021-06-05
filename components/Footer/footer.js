@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <footer>
             <Container className="container">
-                <Logo src="./logo.jpg"/>
+                <Logo src={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`}/>
                 <DataContacto>
                     <FontAwesomeIcon icon={faFacebook}/>
                     <FontAwesomeIcon icon={faInstagram}/>
@@ -57,5 +57,5 @@ const DataContacto = styled.div`
         color: var(--secondary);
     }
 `;
- 
+
 export default Footer;

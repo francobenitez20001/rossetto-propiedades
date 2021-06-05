@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const FormBusqueda = () => {
     return (
-        <WrapperForm>
+        <WrapperForm background={`${process.env.NEXT_PUBLIC_URL}/form.jpg`}>
             <div className="container">
                 <form onSubmit={e=>e.preventDefault()}>
                     <div className="row">
@@ -35,7 +35,7 @@ const WrapperForm = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('./form.jpg');
+    background: url(${props=>props.background ? props.background : ''});
     background-position: top;
     background-attachment: fixed;
     background-repeat: no-repeat;

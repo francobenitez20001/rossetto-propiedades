@@ -6,6 +6,10 @@ import styled from "styled-components";
 import DatosPrincipales from "../../components/Propiedades/DatosPrincipales";
 import DescripcionPropiedad from "../../components/Propiedades/Descripcion";
 import ServiciosPropiedad from "../../components/Propiedades/Servicios";
+import SliderPropiedades from "../../components/SliderPropiedades/Slider";
+import FormBusqueda from "../../components/FormBusqueda/form";
+import Footer from '../../components/Footer/footer';
+import TituloDestacado from "../../components/tituloDestacado";
 
 const Propiedad = (props) => {
   const router = useRouter();
@@ -17,7 +21,7 @@ const Propiedad = (props) => {
       <div className="container">
         <Main className="row">
           <div className="col-12 col-md-7">
-            <Info className="mt-2"><span>Venta - Pilar - La Lomada</span></Info>
+            <TituloDestacado innerHtml="Venta - Pilar - La Lomada"/>
             <SliderPropiedad/>
           </div>
           <div className="col-12 col-md-5">
@@ -28,7 +32,11 @@ const Propiedad = (props) => {
         <DescripcionPropiedad/>
         <ServiciosPropiedad/>
       </div>
-      <br/>      <br/>      <br/>
+      <br/><hr/><br/>
+      <SliderPropiedades/>
+      <br/>
+      <FormBusqueda/>
+      <Footer/>
     </>
   );
 }
@@ -40,15 +48,5 @@ const Main = styled.div`
   }
 `;
 
-const Info = styled.div`
-  >span{
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--secondary);
-    border-bottom: 2px solid var(--primary);
-    text-transform: uppercase;
-    font-family: 'Open Sans',sans-serif;
-  }
-`;
 
 export default Propiedad;

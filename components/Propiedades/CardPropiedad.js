@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import Link from 'next/link';
 
 const CardPropiedad = (props) => {
   return (
+    <Link href="/propiedad/pilar-cañada-village/1">
       <Card width={props.fullWidth}>
           <Header>
               <img
@@ -19,6 +21,7 @@ const CardPropiedad = (props) => {
               </Price>
           </Footer>
       </Card>
+    </Link>
   );
 }
 
