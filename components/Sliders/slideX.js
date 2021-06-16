@@ -93,8 +93,8 @@ const SlideX = (props) => {
             {props.indicators ?
               <Indicadores id={props.idIndicadores}>
                 {props.indicators.map(img=>(
-                  <div className="col-2" key={img}>
-                    <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
+                  <div className="col-2" key={img.idImagen}>
+                    <img src={img.nombre} className="img-fluid"/>
                   </div>
                 ))}
               </Indicadores>

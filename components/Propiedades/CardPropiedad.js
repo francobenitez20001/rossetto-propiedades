@@ -2,22 +2,21 @@ import styled from "styled-components";
 import Link from 'next/link';
 
 const CardPropiedad = (props) => {
+  const {idInmueble,header,partido,barrio,dormitorios,moneda,precio} = props;
   return (
-    <Link href="/propiedad/pilar-cañada-village/1">
+    <Link href={`/propiedad/${idInmueble}`}>
       <Card width={props.fullWidth}>
           <Header>
-              <img
-                  src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"
-              />
+              <img src={header} />
           </Header>
           <Footer>
               <div>
-                  <Lugar>Pilar - CAÑADA VILLAGE</Lugar>
-                  <DatoExtra>Dormitorios: 2</DatoExtra>
+                  <Lugar>{partido} - {barrio}</Lugar>
+                  <DatoExtra>Dormitorios: {dormitorios}</DatoExtra>
               </div>
               <Price>
-                  <span>U$S</span>
-                  98.000
+                  <span>{moneda=='US' ? 'U$S' : '$'}</span>
+                  {precio}
               </Price>
           </Footer>
       </Card>

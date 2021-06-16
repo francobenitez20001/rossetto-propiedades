@@ -1,21 +1,25 @@
 import { faBath, faBed, faCar, faMapMarkedAlt, faRulerCombined, faRulerHorizontal, faSwimmer } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import {useContext} from 'react'
+import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
 
 const DatosPrincipales = (props) => {
+  const {seleccionado:{data}} = useContext(InmuebleContext);
+
   return (
     <InfoContainer>
       <Dato>
         <div>
           <FontAwesomeIcon icon={faMapMarkedAlt}/>
         </div>
-        <span>Ruta 8 Km 74, Parada Robles, Exaltación de la Cruz</span>
+        <span>{data.DIRECCION}</span>
       </Dato>
       <Dato>
         <div>
           <FontAwesomeIcon icon={faBed}/>
         </div>
-        <span>Dormitorios: 3</span>
+        <span>Dormitorios: {data.DORMITORIOS}</span>
       </Dato>
       <Dato>
         <div>
@@ -27,25 +31,25 @@ const DatosPrincipales = (props) => {
         <div>
           <FontAwesomeIcon icon={faCar}/>
         </div>
-        <span>Cochera: Si</span>
+        <span>Cochera: {data.TIENE_COCHERA==1 ? 'SI' : 'NO'}</span>
       </Dato>
       <Dato>
         <div>
           <FontAwesomeIcon icon={faSwimmer}/>
         </div>
-        <span>Pileta: Si</span>
+        <span>Pileta: {data.TIENE_PILETA==1 ? 'SI' : 'NO'}</span>
       </Dato>
       <Dato>
         <div>
           <FontAwesomeIcon icon={faRulerHorizontal}/>
         </div>
-        <span>Sup. cubierta: 150 metros cuadrados</span>
+        <span>Sup. cubierta: {data.SUPERFICIE_CUBIERTA} {data.UNIDAD_MEDIDA}</span>
       </Dato>
       <Dato>
         <div>
           <FontAwesomeIcon icon={faRulerCombined}/>
         </div>
-        <span>Sup. Total: 200 metros cuadrados</span>
+        <span>Sup. Total: {data.SUPERFICIE_TOTAL} {data.UNIDAD_MEDIDA}</span>
       </Dato>
     </InfoContainer>
   );

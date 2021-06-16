@@ -1,4 +1,4 @@
-import { INMUEBLE_ACTUALIZAR_FILTROS, INMUEBLE_ERROR, INMUEBLE_LOADING, INMUEBLE_RESTABLECER_FILTROS, INMUEBLE_TRAER_MAS, INMUEBLE_TRAER_TODOS, INMUEBLE_TRAER_UNO, INMUEBLE_UPDATE_PAGINATION } from "../../types";
+import { INMUEBLE_ACTUALIZAR_FILTROS, INMUEBLE_ERROR, INMUEBLE_LOADING, INMUEBLE_RESTABLECER_FILTROS, INMUEBLE_TRAER_DESTACADAS, INMUEBLE_TRAER_MAS, INMUEBLE_TRAER_TODOS, INMUEBLE_TRAER_UNO, INMUEBLE_UPDATE_PAGINATION } from "../../types";
 
 const inmueblesReducer = (state,action) => {
   switch (action.type) {
@@ -11,7 +11,16 @@ const inmueblesReducer = (state,action) => {
     case INMUEBLE_TRAER_MAS:
       return {...state,loading:false,error:null,data:[...data,action.payload]}
     case INMUEBLE_TRAER_UNO:
-      return {...state,loading:false,error:null,seleccionado:action.payload}
+      return {...state,
+        loading:false,
+        error:null,
+        seleccionado:{
+          data:action.payload.inmueble[0],
+          imagenes:action.payload.imagenes
+        }
+      }
+    case INMUEBLE_TRAER_DESTACADAS:
+      return {...state,loading:false,error:null,destacadas:action.payload}
     case INMUEBLE_UPDATE_PAGINATION:
       return {
         ...state,

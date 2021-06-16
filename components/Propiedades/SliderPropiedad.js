@@ -1,29 +1,22 @@
 import SlideX from "../Sliders/slideX";
+import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
+import { useContext } from "react";
 
 const SliderPropiedad = (props) => {
+  const {seleccionado:{imagenes}} = useContext(InmuebleContext);
   return (
     <SlideX
-      pages={5}
+      pages={imagenes.length}
       classItem="imagenPropiedad"
       idSlider="slider-propiedad"
-      indicators={[1,2,3,4,5]}
+      indicators={imagenes}
       idIndicadores="indicadores-propiedad"
       sliderMobile={true}>
-      <div className="col-12 imagenPropiedad mx-2">
-        <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
-      </div>
-      <div className="col-12 imagenPropiedad mx-2">
-        <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
-      </div>
-      <div className="col-12 imagenPropiedad mx-2">
-        <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
-      </div>
-      <div className="col-12 imagenPropiedad mx-2">
-        <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
-      </div>
-      <div className="col-12 imagenPropiedad mx-2">
-        <img src="https://images.unsplash.com/photo-1574330411208-9dbbec572fc7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80" className="img-fluid"/>
-      </div>
+      {imagenes.map(img=>(
+        <div className="col-12 imagenPropiedad mx-2" key={img.idImagen}>
+          <img src={img.nombre} className="w-100"/>
+        </div>
+      ))}
     </SlideX>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { INMUEBLE_ACTUALIZAR_FILTROS, INMUEBLE_ERROR, INMUEBLE_LOADING, INMUEBLE_RESTABLECER_FILTROS, INMUEBLE_TRAER_MAS, INMUEBLE_TRAER_TODOS, INMUEBLE_TRAER_UNO, INMUEBLE_UPDATE_PAGINATION } from "../../types";
+import { INMUEBLE_ACTUALIZAR_FILTROS, INMUEBLE_ERROR, INMUEBLE_LOADING, INMUEBLE_RESTABLECER_FILTROS, INMUEBLE_TRAER_DESTACADAS, INMUEBLE_TRAER_MAS, INMUEBLE_TRAER_TODOS, INMUEBLE_TRAER_UNO, INMUEBLE_UPDATE_PAGINATION } from "../../types";
 import { InmuebleContext } from "./inmueblesContext";
 import inmueblesReducer from './inmueblesReducer';
 import { API } from "../../config/index";
@@ -7,6 +7,7 @@ import { API } from "../../config/index";
 const InmuebleState = (props) => {
   const INTIAL_STATE = {
     data:[],
+    destacadas:[],
     seleccionado:null,
     filtrando:false,
     filtros:{
@@ -100,10 +101,29 @@ const InmuebleState = (props) => {
     })
     try {
       const req = await fetch(`${API}/inmuebles/${id}`);
-      const {inmueble} = await req.json();
+      const data = await req.json();
       dispatch({
         type:INMUEBLE_TRAER_UNO,
-        payload:inmueble[0]
+        payload:data
+      })
+    } catch (error) {
+      dispatch({
+        type:INMUEBLE_ERROR,
+        payload:error
+      })
+    }
+  }
+
+  const traerDestacadas = async ()=>{
+    dispatch({
+      type:INMUEBLE_LOADING
+    })
+    try {
+      const req = await fetch(`${API}/inmuebles?desde=0&cantidad=9&order=normal`);
+      const {inmuebles} = await req.json();
+      dispatch({
+        type:INMUEBLE_TRAER_DESTACADAS,
+        payload:inmuebles
       })
     } catch (error) {
       dispatch({
@@ -138,6 +158,7 @@ const InmuebleState = (props) => {
       value={{
         data:state.data,
         seleccionado:state.seleccionado,
+        destacadas:state.destacadas,
         filtrando:state.filtrando,
         filtros:state.filtros,
         pagination:state.pagination,
@@ -148,6 +169,7 @@ const InmuebleState = (props) => {
         traerMasInmuebles,
         filtrarInmuebles,
         traerInmueble,
+        traerDestacadas,
         updatePagination,
         aplicarFiltros,
         restablecerFiltros
