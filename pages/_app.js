@@ -8,6 +8,7 @@ import CategoriasState from '../context/categorias/categoriasState';
 import ContactoState from '../context/contacto/contactoState';
 import OperacionesState from '../context/operaciones/operacionesState';
 import PartidosState from '../context/partidos/partidosState';
+import InmuebleState from '../context/inmuebles/inmueblesState';
 
 function MyApp({ Component, pageProps }) {
   return <>
@@ -16,9 +17,11 @@ function MyApp({ Component, pageProps }) {
       <CategoriasState>
         <OperacionesState>
           <PartidosState>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <InmuebleState>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </InmuebleState>
           </PartidosState>
         </OperacionesState>
       </CategoriasState>
