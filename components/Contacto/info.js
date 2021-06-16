@@ -1,40 +1,50 @@
 import { faEnvelope, faPhoneAlt, faSearchLocation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components";
+import { useEffect,useContext } from "react";
+import { ContactoContext } from "../../context/contacto/contactoContext";
+import Spinner from '../Spinner';
 
 const InfoContacto = () => {
-    return (
-        <>
-            <Titulo>Contactanos</Titulo>
-            <Item>
-                <IconArea>
-                    <FontAwesomeIcon icon={faSearchLocation}/>
-                </IconArea>
-                <Info>
-                    <Subtitle>Sucursal Pilar centro</Subtitle>
-                    <Descripcion>Brig. Gral Juan Manuel de Rosas 309 Pilar</Descripcion>
-                </Info>
-            </Item>
-            <Item>
-                <IconArea>
-                    <FontAwesomeIcon icon={faPhoneAlt}/>
-                </IconArea>
-                <Info>
-                    <Subtitle>Teléfono</Subtitle>
-                    <Descripcion>+54 230 442 6268</Descripcion>
-                </Info>
-            </Item>
-            <Item>
-                <IconArea>
-                    <FontAwesomeIcon icon={faEnvelope}/>
-                </IconArea>
-                <Info>
-                    <Subtitle>Email</Subtitle>
-                    <Descripcion>info@burguenio.com</Descripcion>
-                </Info>
-            </Item>
-        </>
-    );
+  const {data,loading,error,traerInfo} = useContext(ContactoContext);
+  useEffect(() => {
+    if(!data){
+      traerInfo();
+    }
+  }, [])
+  return (
+    !data ? <Spinner/> :
+    <>
+        <Titulo>Contactanos</Titulo>
+        <Item>
+            <IconArea>
+                <FontAwesomeIcon icon={faSearchLocation}/>
+            </IconArea>
+            <Info>
+                <Subtitle>Sucursal Pilar centro</Subtitle>
+                <Descripcion>{data.direccion}</Descripcion>
+            </Info>
+        </Item>
+        <Item>
+            <IconArea>
+                <FontAwesomeIcon icon={faPhoneAlt}/>
+            </IconArea>
+            <Info>
+                <Subtitle>Teléfono</Subtitle>
+                <Descripcion>{data.telefonoPrincipal}</Descripcion>
+            </Info>
+        </Item>
+        <Item>
+            <IconArea>
+                <FontAwesomeIcon icon={faEnvelope}/>
+            </IconArea>
+            <Info>
+                <Subtitle>Email</Subtitle>
+                <Descripcion>info@burguenio.com</Descripcion>
+            </Info>
+        </Item>
+    </>
+  );
 }
 
 const Titulo = styled.h2`

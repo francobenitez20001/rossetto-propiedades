@@ -1,23 +1,25 @@
 import styled from "styled-components";
-
+import { useContext } from "react";
+import { ContactoContext } from "../../context/contacto/contactoContext";
 const { faInstagram, faFacebook, faTwitter } = require("@fortawesome/free-brands-svg-icons")
 const { FontAwesomeIcon } = require("@fortawesome/react-fontawesome")
 
 const Footer = () => {
-    return (
-        <footer>
-            <Container className="container">
-                <Logo src={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`}/>
-                <DataContacto>
-                    <FontAwesomeIcon icon={faFacebook}/>
-                    <FontAwesomeIcon icon={faInstagram}/>
-                    <FontAwesomeIcon icon={faTwitter}/>
-                    <span>&copy; {new Date().getFullYear()} Todos los derechos reservados</span>
-                </DataContacto>
-                <p>Power by Franco Benitez Solutions</p>
-            </Container>
-        </footer>
-    );
+  const {data} = useContext(ContactoContext);
+  return (
+      <footer>
+          <Container className="container">
+              <Logo src={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`}/>
+              <DataContacto>
+                  <FontAwesomeIcon onClick={()=>window.open(`${data.facebook}`,'blank')} icon={faFacebook}/>
+                  <FontAwesomeIcon onClick={()=>window.open(`${data.instagram}`,'blank')} icon={faInstagram}/>
+                  {/* <FontAwesomeIcon onClick={()=>window.open(`${data.twitter}`,'blank')} icon={faTwitter}/> */}
+                  <span>&copy; {new Date().getFullYear()} Todos los derechos reservados</span>
+              </DataContacto>
+              <p>Power by Franco Benitez Solutions</p>
+          </Container>
+      </footer>
+  );
 }
 
 const Container = styled.div`

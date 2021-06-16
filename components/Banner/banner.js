@@ -1,27 +1,33 @@
 import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { ContactoContext } from "../../context/contacto/contactoContext";
 
 const Banner = () => {
-    return (
-        <Slide>
-            <div className="container">
-                <Principal>Encontra la propiedad ideal</Principal>
-                <Descripcion>Todos nuestros conocimientos y herramientas a tu beneficio</Descripcion>
-                <Redes>
-                    <Red>
-                        <FontAwesomeIcon icon={faFacebook}/>
-                    </Red>
-                    <Red>
-                        <FontAwesomeIcon icon={faInstagram}/>
-                    </Red>
-                    <Red>
-                        <FontAwesomeIcon icon={faTwitter}/>
-                    </Red>
-                </Redes>
-            </div>
-        </Slide>
-    );
+  const {data,loading,error,traerInfo} = useContext(ContactoContext);
+  useEffect(() => {
+    if(!data){
+      traerInfo();
+    }
+  }, [])
+  return (
+    <Slide>
+      <div className="container">
+        <Principal>Encontra la propiedad ideal</Principal>
+        <Descripcion>Todos nuestros conocimientos y herramientas a tu beneficio</Descripcion>
+        {!data ? null :
+        <Redes>
+          <Red onClick={()=>window.open(`${data.facebook}`,'blank')}>
+              <FontAwesomeIcon icon={faFacebook}/>
+          </Red>
+          <Red onClick={()=>window.open(`${data.instagram}`,'blank')}>
+              <FontAwesomeIcon icon={faInstagram}/>
+          </Red>
+        </Redes>}
+      </div>
+    </Slide>
+  );
 }
 
 const Slide = styled.div`
@@ -47,7 +53,7 @@ const Slide = styled.div`
             text-align:center;
         }
     }
-    
+
     `;
 
 const Principal = styled.h1`
@@ -111,5 +117,5 @@ const Red = styled.div`
         }
     }
 `;
- 
+
 export default Banner;

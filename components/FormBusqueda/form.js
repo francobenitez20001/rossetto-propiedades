@@ -1,34 +1,92 @@
 import styled from "styled-components";
+import { OperacionesContext } from "../../context/operaciones/operacionesContext";
+import { CategoriaContext } from "../../context/categorias/categoriasContext";
+import { PartidosContext } from "../../context/partidos/partidosContext";
+import { useContext, useEffect, useState } from "react";
+import Spinner from '../Spinner';
+import Swal from "sweetalert2";
 
 const FormBusqueda = () => {
-    return (
-        <WrapperForm background={`${process.env.NEXT_PUBLIC_URL}/form.jpg`}>
-            <div className="container">
-                <form onSubmit={e=>e.preventDefault()}>
-                    <div className="row">
-                        <div className="col-12 col-md-3 my-2">
-                            <select className="form-control">
-                                <option value="">Selecciona una categoria</option>
-                            </select>
-                        </div>
-                        <div className="col-12 col-md-3 my-2">
-                            <select className="form-control">
-                                <option value="">Selecciona una categoria</option>
-                            </select>
-                        </div>
-                        <div className="col-12 col-md-3 my-2">
-                            <select className="form-control">
-                                <option value="">Selecciona una categoria</option>
-                            </select>
-                        </div>
-                        <div className="col-12 col-md-3 my-2">
-                            <Submit type="submit" value="Buscar propiedades"/>
-                        </div>
+  const {data:operaciones,error:errorOperaciones,traerTodas:traerOperaciones} = useContext(OperacionesContext);
+  const {data:categorias,error:errorCategorias,traerTodas:traerCategorias} = useContext(CategoriaContext);
+  const {data:partidos,error:errorPartidos,traerTodos:traerPartidos} = useContext(PartidosContext);
+  const [formValues, setFormValues] = useState({
+    idOperacion:'',
+    idCategoria:'',
+    idPartido:''
+  });
+
+  useEffect(() => {
+    getResources();
+  }, []);
+
+  const getResources = async()=>{
+    if(!operaciones.length){
+      await traerOperaciones();
+    }
+    if(!categorias.length){
+      await traerCategorias();
+    }
+    if(!partidos.length){
+      await traerPartidos();
+    }
+  }
+
+  const handleChange = e=>{
+    setFormValues({
+      ...formValues,
+      [e.target.name]:e.target.value
+    })
+  }
+
+  const handleSubmit = e=>{
+    e.preventDefault();
+    console.log(formValues);
+  }
+
+  if(errorOperaciones || errorCategorias || errorPartidos){
+    console.log(errorOperaciones,errorCategorias,errorPartidos);
+    Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
+  }
+  return (
+      <WrapperForm background={`${process.env.NEXT_PUBLIC_URL}/form.jpg`}>
+          <div className="container">
+              <form onSubmit={handleSubmit}>
+                {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :
+                <div className="row">
+                    <div className="col-12 col-md-3 my-2">
+                        <select className="form-control" name="idOperacion" defaultValue={formValues.idOperacion} onChange={handleChange}>
+                            <option value="">Seleccioná una operación</option>
+                            {operaciones.map(op=>(
+                              <option value={op.idOperacion} key={op.idOperacion}>{op.operacion}</option>
+                            ))}
+                        </select>
                     </div>
-                </form>
-            </div>
-        </WrapperForm>
-    );
+                    <div className="col-12 col-md-3 my-2">
+                        <select className="form-control" name="idCategoria" defaultValue={formValues.idCategoria} onChange={handleChange}>
+                            <option value="">Seleccioná una categoria</option>
+                            {categorias.map(cat=>(
+                              <option value={cat.idCategoria} key={cat.idCategoria}>{cat.categoria}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-12 col-md-3 my-2">
+                        <select className="form-control" name="idPartido" defaultValue={formValues.idPartido} onChange={handleChange}>
+                            <option value="">Seleccioná un partido</option>
+                            {partidos.map(par=>(
+                              <option value={par.idPartido} key={par.idPartido}>{par.partido}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-12 col-md-3 my-2">
+                        <Submit type="submit" value="Buscar propiedades"/>
+                    </div>
+                </div>
+                }
+              </form>
+          </div>
+      </WrapperForm>
+  );
 }
 
 const WrapperForm = styled.section`
