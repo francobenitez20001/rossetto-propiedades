@@ -15,7 +15,7 @@ const CardPropiedad = (props) => {
                   <DatoExtra>Dormitorios: {dormitorios}</DatoExtra>
               </div>
               <Price>
-                  <span>{moneda=='US' ? 'U$S' : '$'}</span>
+                  <span>{moneda=='us' ? 'U$S' : '$'} </span>
                   {precio}
               </Price>
           </Footer>
@@ -34,14 +34,18 @@ const Card = styled.div`
         filter: brightness(50%); // Más oscura
         box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
     }
+    height: 250px;
 `;
 
 const Header = styled.section`
-    height: auto;
-    max-height: 60%;
+    /* height: auto;
+    max-height: 60%; */
+    height: 82%;
     text-align: center;
     >img{
         width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 `;
 
@@ -49,6 +53,9 @@ const Lugar = styled.p`
     margin:0;
     text-transform: uppercase;
     color: var(--white);
+    @media(max-width:768px){
+      font-size: 15px;
+    }
 `;
 
 const DatoExtra = styled.p`
@@ -73,7 +80,7 @@ const Footer = styled.section`
 const Price = styled.p`
     font-weight: 600;
     color: var(--white);
-    font-size: 22px;
+    font-size: 17px;
     margin:0;
 `;
 

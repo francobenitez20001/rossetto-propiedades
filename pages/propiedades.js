@@ -31,13 +31,13 @@ const Row = styled.main`
   padding-top: 50px;
   >div{
     >h3{
-      font-size: 23px;
+      font-size: 20px;
       color: var(--secondary);
       font-weight:600;
       text-transform: uppercase;
       margin: 0;
       >span{
-        font-size: 22px;
+        font-size: 18px;
         color: var(--primary);
         text-transform:uppercase;
         font-weight: bold;

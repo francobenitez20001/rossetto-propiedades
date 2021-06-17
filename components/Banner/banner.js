@@ -1,4 +1,4 @@
-import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
@@ -31,7 +31,7 @@ const Banner = () => {
 }
 
 const Slide = styled.div`
-    background:url('./banner.jpeg');
+    background:url('/banner.jpeg');
     height:100vh;
     background-repeat:no-repeat;
     background-size:cover;
