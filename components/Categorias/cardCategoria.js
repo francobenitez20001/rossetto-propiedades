@@ -1,3 +1,4 @@
+import Router from "next/router";
 import styled from "styled-components";
 
 const CardCategoria = (props) => {
@@ -10,7 +11,7 @@ const CardCategoria = (props) => {
             <Body>
             </Body>
             <Footer>
-                <Boton>Ver publicaciones</Boton>
+                <Boton onClick={()=>Router.push(`/propiedades/${props.categoria.toLowerCase()}`)}>Ver publicaciones</Boton>
             </Footer>
         </Card>
     );
@@ -52,7 +53,7 @@ const FotoCat = styled.img`
 `;
 
 const Body = styled.section`
-    
+
 `;
 
 const Footer = styled.div`
@@ -74,5 +75,5 @@ const Boton = styled.button`
     font-weight:bold;
     box-shadow:0px 2px 1px -1px rgba(228, 224, 224, 0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
 `;
- 
+
 export default CardCategoria;
