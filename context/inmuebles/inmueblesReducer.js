@@ -32,16 +32,17 @@ const inmueblesReducer = (state,action) => {
     case INMUEBLE_ACTUALIZAR_FILTROS:
       return {
         ...state,
-        fitros:{
-          idOperacion:action.payload.idOperacion!='' ? action.payload.idOperacion : null,
-          idOperacion:action.payload.idCategoria!='' ? action.payload.idCategoria : null,
-          idOperacion:action.payload.idBarrio!='' ? action.payload.idBarrio : null
+        filtrando:true,
+        filtros:{
+          idOperacion:(action.payload.idOperacion!='') ? action.payload.idOperacion : null,
+          idCategoria:(action.payload.idCategoria!='') ? action.payload.idCategoria : null,
+          idPartido:(action.payload.idPartido!='') ? action.payload.idPartido : null
         }
       }
     case INMUEBLE_RESTABLECER_FILTROS:
       return {
         ...state,
-        fltrando:false,
+        filtrando:false,
         filtros:{
           idOperacion:null,
           idCategoria:null,

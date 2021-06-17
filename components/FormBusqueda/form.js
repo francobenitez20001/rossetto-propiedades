@@ -2,14 +2,17 @@ import styled from "styled-components";
 import { OperacionesContext } from "../../context/operaciones/operacionesContext";
 import { CategoriaContext } from "../../context/categorias/categoriasContext";
 import { PartidosContext } from "../../context/partidos/partidosContext";
+import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
 import { useContext, useEffect, useState } from "react";
 import Spinner from '../Spinner';
 import Swal from "sweetalert2";
+import Router from 'next/router';
 
 const FormBusqueda = () => {
   const {data:operaciones,error:errorOperaciones,traerTodas:traerOperaciones} = useContext(OperacionesContext);
   const {data:categorias,error:errorCategorias,traerTodas:traerCategorias} = useContext(CategoriaContext);
   const {data:partidos,error:errorPartidos,traerTodos:traerPartidos} = useContext(PartidosContext);
+  const {filtrando,filtros,loading,error,filtrarInmuebles,aplicarFiltros} = useContext(InmuebleContext);
   const [formValues, setFormValues] = useState({
     idOperacion:'',
     idCategoria:'',
@@ -19,6 +22,14 @@ const FormBusqueda = () => {
   useEffect(() => {
     getResources();
   }, []);
+
+  useEffect(() => {
+    if(filtrando && (formValues.idOperacion!= "" || formValues.idCategoria!="" || formValues.idPartido!="")){
+      if(filtros.idOperacion || filtros.idCategoria || filtros.idPartido){
+        filtrarInmuebles();
+      }
+    }
+  }, [filtrando])
 
   const getResources = async()=>{
     if(!operaciones.length){
@@ -41,7 +52,16 @@ const FormBusqueda = () => {
 
   const handleSubmit = e=>{
     e.preventDefault();
-    console.log(formValues);
+    if(formValues.idOperacion.trim() == "" && formValues.idCategoria.trim() == "" && formValues.idPartido.trim() == ""){
+      Swal.fire(
+        'Atención',
+        'Es necesario que completes un campo',
+        'warning'
+      );
+      return;
+    }
+    aplicarFiltros(formValues);
+    Router.push('/propiedades')
   }
 
   if(errorOperaciones || errorCategorias || errorPartidos){

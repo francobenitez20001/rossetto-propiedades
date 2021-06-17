@@ -1,38 +1,113 @@
 import { faArrowLeft, faFilter } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { OperacionesContext } from "../../context/operaciones/operacionesContext";
+import { CategoriaContext } from "../../context/categorias/categoriasContext";
+import { PartidosContext } from "../../context/partidos/partidosContext";
+import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
+import { useContext, useEffect, useState } from "react";
+import Spinner from "../Spinner";
 import styled from "styled-components";
 
 const FormFiltroPropiedades = () => {
+  const {data:operaciones,error:errorOperaciones,traerTodas:traerOperaciones} = useContext(OperacionesContext);
+  const {data:categorias,error:errorCategorias,traerTodas:traerCategorias} = useContext(CategoriaContext);
+  const {data:partidos,error:errorPartidos,traerTodos:traerPartidos} = useContext(PartidosContext);
+  const {filtrando,filtros,loading,error,filtrarInmuebles,aplicarFiltros} = useContext(InmuebleContext);
   const [show, setShow] = useState(false);
+  const [formValues, setFormValues] = useState({
+    idOperacion:'',
+    idCategoria:'',
+    idPartido:''
+  });
+
+  useEffect(() => {
+    getResources();
+  }, []);
+
+  useEffect(() => {
+    if(filtrando && (formValues.idOperacion!= "" || formValues.idCategoria!="" || formValues.idPartido!="")){
+      if(filtros.idOperacion || filtros.idCategoria || filtros.idPartido){
+        filtrarInmuebles();
+      }
+    }
+  }, [filtrando,filtros])
+
+  const getResources = async()=>{
+    if(!operaciones.length){
+      await traerOperaciones();
+    }
+    if(!categorias.length){
+      await traerCategorias();
+    }
+    if(!partidos.length){
+      await traerPartidos();
+    }
+  }
+
+  const handleChange = e=>{
+    setFormValues({
+      ...formValues,
+      [e.target.name]:e.target.value
+    })
+  }
+
+  const handleSubmit = e=>{
+    e.preventDefault();
+    if(formValues.idOperacion.trim() == "" && formValues.idCategoria.trim() == "" && formValues.idPartido.trim() == ""){
+      Swal.fire(
+        'Atención',
+        'Es necesario que completes un campo',
+        'warning'
+      );
+      return;
+    }
+    aplicarFiltros(formValues);
+    setShow(false);
+  }
+
+  if(errorOperaciones || errorCategorias || errorPartidos){
+    console.log(errorOperaciones,errorCategorias,errorPartidos);
+    Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
+  }
   return (
     <>
       <IconShowFiltro>
         <FontAwesomeIcon icon={faFilter} onClick={()=>setShow(!show)}/>
       </IconShowFiltro>
-      <Form show={show} onSubmit={e=>e.preventDefault()}>
+      <Form show={show} onSubmit={handleSubmit}>
         <FontAwesomeIcon icon={faArrowLeft} onClick={()=>setShow(!show)}/>
+        {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :
         <Wrapper>
           <Box>
-            <label htmlFor="idPropiedad">Tipo de propiedad</label>
-            <select className="form-control" id="idPropiedad">
-              <option value="">Seleccione un tipo de propiedad</option>
+            <label htmlFor="idOperacion">Tipo de propiedad</label>
+            <select className="form-control" id="idOperacion" name="idOperacion" onChange={handleChange} defaultValue={formValues.idOperacion}>
+              <option value="">Seleccioná una operación</option>
+              {operaciones.map(op=>(
+                <option value={op.idOperacion} key={op.idOperacion}>{op.operacion}</option>
+              ))}
             </select>
           </Box>
           <Box>
-            <label htmlFor="idOperacion">Operación</label>
-            <select className="form-control" id="idOperacion">
-              <option value="">Seleccione un tipo de operación</option>
+            <label htmlFor="idCategoria">Operación</label>
+            <select className="form-control" id="idCategoria" name="idCategoria" onChange={handleChange} defaultValue={formValues.idCategoria}>
+              <option value="">Seleccioná una categoria</option>
+              {categorias.map(cat=>(
+                <option value={cat.idCategoria} key={cat.idCategoria}>{cat.categoria}</option>
+              ))}
             </select>
           </Box>
           <Box>
-            <label htmlFor="idLocalidad">Localidad</label>
-            <select className="form-control" id="idLocalidad">
-              <option value="">Seleccione una localidad</option>
+            <label htmlFor="idPartido">Partido</label>
+            <select className="form-control" id="idPartido" name="idPartido" onChange={handleChange} defaultValue={formValues.idPartido}>
+              <option value="">Seleccioná un partido</option>
+              {partidos.map(par=>(
+                <option value={par.idPartido} key={par.idPartido}>{par.partido}</option>
+              ))}
             </select>
           </Box>
           <input type="submit" value="Aplicar filtro"/>
         </Wrapper>
+        }
       </Form>
     </>
   );

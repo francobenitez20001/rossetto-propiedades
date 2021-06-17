@@ -72,15 +72,15 @@ const InmuebleState = (props) => {
     try {
       let url = `${API}/inmuebles/filtrar?`;
       if(state.filtros.idOperacion){
-        url += `&idOperacion=${state.filtros.idOperacion}`;
+        url += `idOperacion=${state.filtros.idOperacion}&`;
       }
       if(state.filtros.idCategoria){
-        url += `&idCategoria=${state.filtros.idCategoria}`;
+        url += `idCategoria=${state.filtros.idCategoria}&`;
       }
       if(state.filtros.idPartido){
-        url += `&idPartido=${state.filtros.idPartido}`;
+        url += `idPartido=${state.filtros.idPartido}&`;
       }
-
+      url += `order=${state.order}&cantidad=${state.pagination.limiteDesktop}&desde=${state.pagination.desde}`
       const req = await fetch(url);
       const {inmuebles} = await req.json();
       dispatch({

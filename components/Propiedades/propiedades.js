@@ -4,9 +4,9 @@ import { useEffect, useContext } from "react";
 import Spinner from "../Spinner";
 
 const Propiedades = () => {
-  const {data:propiedades,loading,error,traerInmuebles} = useContext(InmuebleContext);
+  const {data:propiedades,filtrando,loading,error,traerInmuebles} = useContext(InmuebleContext);
   useEffect(() => {
-    if(!propiedades.length){
+    if(!propiedades.length || (propiedades.length && !filtrando)){
       traerInmuebles();
     }
   }, []);
