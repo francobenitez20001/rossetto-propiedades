@@ -2,12 +2,12 @@ import styled from "styled-components";
 import Link from 'next/link';
 
 const CardPropiedad = (props) => {
-  const {idInmueble,header,partido,barrio,dormitorios,moneda,precio} = props;
+  const {idInmueble,header,partido,barrio,dormitorios,moneda,precio,descripcion} = props;
   return (
     <Link href={`/propiedad/${idInmueble}`}>
       <Card width={props.fullWidth}>
           <Header>
-              <img src={header} />
+              <img src={header} alt={`Rossetto Propiedades publica propiedad en ${partido} barrio ${barrio}. ${descripcion}`}/>
           </Header>
           <Footer>
               <div>

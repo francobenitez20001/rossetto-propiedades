@@ -16,7 +16,7 @@ const Categorias = () => {
       <h2 className="text-center mb-4">Propiedades</h2>
       {categorias.map(categoria=>(
         <div className="col-12 col-md-3 my-2" key={categoria.idCategoria}>
-          <CardCategoria categoria={categoria.categoria} descripcion="Hay una franquicia RE/MAX para vos también. Enterate cómo podés empezar."/>
+          <CardCategoria categoria={categoria.categoria} foto={categoria.foto}/>
         </div>
       ))}
       <style jsx>{`

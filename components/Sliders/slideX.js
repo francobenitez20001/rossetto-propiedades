@@ -94,7 +94,7 @@ const SlideX = (props) => {
               <Indicadores id={props.idIndicadores}>
                 {props.indicators.map(img=>(
                   <div className="col-2" key={img.idImagen}>
-                    <img src={img.nombre} className="img-fluid"/>
+                    <img src={img.nombre}/>
                   </div>
                 ))}
               </Indicadores>
@@ -165,10 +165,13 @@ const Indicadores = styled.div`
       filter: brightness(240%); // Más oscura
       border:2px solid var(--primary);
     }
-    margin:0px 7px
+    margin:0px 7px;
+    height: 72px;
   }
   >div>img{
     filter: brightness(30%); // Más oscura
+    height: 100%;
+    width: 100%;
   }
   &::-webkit-scrollbar {
       width: 3px;     /* Tamaño del scroll en vertical */

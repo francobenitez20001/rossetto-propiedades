@@ -5,7 +5,7 @@ const CardCategoria = (props) => {
     return (
         <Card>
             <Header>
-                <FotoCat src={"https://alejandrobm.com/wp-content/uploads/2020/07/Grilla-de-PortadaArtboard-2-copy.jpg"}/>
+                <FotoCat src={props.foto} alt={`${props.categoria} en Pilar y alrededores. Rossetto propiedades`}/>
                 <h3>{props.categoria}</h3>
             </Header>
             <Body>

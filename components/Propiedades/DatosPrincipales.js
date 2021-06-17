@@ -25,7 +25,7 @@ const DatosPrincipales = (props) => {
         <div>
           <FontAwesomeIcon icon={faBath}/>
         </div>
-        <span>Baños: 2</span>
+        <span>Baños: {data.BAÑOS}</span>
       </Dato>
       <Dato>
         <div>

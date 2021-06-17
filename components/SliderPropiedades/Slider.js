@@ -26,7 +26,8 @@ const SliderPropiedades = () => {
                                         barrio={inmueble.BARRIO}
                                         dormitorios={inmueble.DORMITORIOS}
                                         moneda={inmueble.MONEDA_PROPIEDAD}
-                                        precio={inmueble.PRECIO}/>
+                                        precio={inmueble.PRECIO}
+                                        descripcion={inmueble.DESCRIPCION}/>
                     </div>
                   ))}
                 </SlideX>
