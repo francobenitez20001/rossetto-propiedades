@@ -21,6 +21,11 @@ const Navbar = () => {
         }
     }, [showMenuMobile]);
 
+    const navegar = link=>{
+      router.push(`/${link}`);
+      setShowMenuMobile(false);
+    }
+
     return (
         <Nav>
             <header className="container">
@@ -30,28 +35,20 @@ const Navbar = () => {
                 <Botonera className={showMenuMobile ? 'show' : ''}>
                     <FontAwesomeIcon icon={faArrowLeft} onClick={()=>setShowMenuMobile(!showMenuMobile)}/>
                     <List>
-                        <Item>
-                            <Link href="/">
-                                <a>Home</a>
-                            </Link>
+                        <Item onClick={()=>navegar('')}>
+                            <span>Home</span>
                             {asPath == '/' ? <ItemActive></ItemActive> : null}
                         </Item>
-                        <Item>
-                            <Link href="/nosotros">
-                                <a>Quiénes somos</a>
-                            </Link>
+                        <Item onClick={()=>navegar('')} className="d-none">
+                            <span>Quiénes somos</span>
                             {asPath == '/nosotros' ? <ItemActive></ItemActive> : null}
                         </Item>
-                        <Item>
-                            <Link href="/propiedades">
-                                <a>Propiedades</a>
-                            </Link>
+                        <Item onClick={()=>navegar('propiedades')}>
+                            <span>Propiedades</span>
                             {asPath == '/propiedades' ? <ItemActive></ItemActive> : null}
                         </Item>
-                        <Item>
-                            <Link href="/contacto">
-                                <a>Contacto</a>
-                            </Link>
+                        <Item onClick={()=>navegar('contacto')}>
+                            <span>Contacto</span>
                             {asPath == '/contacto' ? <ItemActive></ItemActive> : null}
                         </Item>
                     </List>

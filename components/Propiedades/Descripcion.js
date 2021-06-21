@@ -9,6 +9,14 @@ const DescripcionPropiedad = () => {
     <Contenedor>
       <TituloDestacado innerHtml="Datos generales"/>
       <p>{data.DESCRIPCION}</p>
+      {data.OPERACION != 'Alquiler' ?
+      <div className="alert alert-warning">
+        <b>Atención:</b>
+        <p>
+          Las medidas declaradas son estimativas. El precio puede estar sujeto a modificaciones, debiendose consultar al corredor público inmobiliario. La venta de este inmueble esta sujeta a la tramitación del Codigo de Transferencia de Inmueble (COTI) de conformidad con la normativa vigente( AFIP 2371/08, 2439/08 y ccd) por parte del propietario.
+        </p>
+      </div>
+      : null}
     </Contenedor>
   );
 }

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link from 'next/link';
 
 const CardPropiedad = (props) => {
-  const {idInmueble,header,partido,barrio,dormitorios,moneda,precio,descripcion} = props;
+  const {idInmueble,header,partido,barrio,dormitorios,moneda,precio,descripcion,categoria,operacion} = props;
   return (
     <Link href={`/propiedad/${idInmueble}`}>
       <Card width={props.fullWidth}>
@@ -11,8 +11,8 @@ const CardPropiedad = (props) => {
           </Header>
           <Footer>
               <div>
-                  <Lugar>{partido} - {barrio}</Lugar>
-                  <DatoExtra>Dormitorios: {dormitorios}</DatoExtra>
+                  <Lugar>{dormitorios == 0 ? `${categoria} - ` : ''}{partido} - {barrio}</Lugar>
+                  <DatoExtra>{dormitorios == 0 ? operacion : `Dormitorios: ${dormitorios}`}</DatoExtra>
               </div>
               <Price>
                   <span>{moneda=='us' ? 'U$S' : '$'} </span>

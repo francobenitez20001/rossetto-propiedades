@@ -13,7 +13,7 @@ const Categorias = () => {
   return (
     loading || !categorias.length ? <div className="text-center"><Spinner/></div> :
     <div className="row">
-      <h2 className="text-center mb-4">Propiedades</h2>
+      <h2 className="text-center mb-4">Tipo de propiedades</h2>
       {categorias.map(categoria=>(
         <div className="col-12 col-md-3 my-2" key={categoria.idCategoria}>
           <CardCategoria categoria={categoria.categoria} foto={categoria.foto}/>

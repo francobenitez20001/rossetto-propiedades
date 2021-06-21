@@ -25,6 +25,9 @@ const Span = styled.span`
     font-weight: 600;
     text-transform: uppercase;
     font-size: 25px;
+    @media(max-width:768px){
+      font-size: 18px;
+    }
   }
 `;
 

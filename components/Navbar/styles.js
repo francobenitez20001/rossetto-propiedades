@@ -75,9 +75,9 @@ export const Item = styled.li`
     display:inline-block;
     margin:0px 17px;
     &:last-child{
-        margin: 0px 0px 0px 20px; 
+        margin: 0px 0px 0px 20px;
     }
-    >a{     
+    >span{
         font-size:14px;
         font-weight: 500;
         transition: all .5s ease;

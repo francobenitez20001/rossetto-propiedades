@@ -31,19 +31,19 @@ const Banner = () => {
 }
 
 const Slide = styled.div`
-    background:url('/banner.jpeg');
+    background:url('https://images.unsplash.com/photo-1617638968441-0f701b56870e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80');
     height:100vh;
     background-repeat:no-repeat;
     background-size:cover;
-    background-position-y:top;
+    background-position-y:center;
     background-attachment:fixed;
     background-color:rgba(0,0,0,0.5);
-    opacity:0.88;
+    opacity:0.99;
     >div{
         position:relative;
         text-align:right;
         color:var(--white);
-        padding-top:50px;
+        padding-top:  50px;
         height:100%;
         display:flex;
         flex-direction:column;

@@ -23,6 +23,7 @@ const Card = styled.div`
     background-color:var(--white);
     transition:box-shadow .3s ease;
     cursor: pointer;
+    height: 225px;
     //border-radius: 10px;
     &:hover{
         box-shadow: 2px 2px 2px 5px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 5px rgba(0,0,0,0.12);
@@ -31,7 +32,7 @@ const Card = styled.div`
 
 const Header = styled.div`
     width:100%;
-    max-height:50%;
+    height:70%;
     position: relative;
     background-color: rgba(0,0,0,0);
     opacity: 0.99;
@@ -50,6 +51,8 @@ const Header = styled.div`
 const FotoCat = styled.img`
     width:100%;
     filter: brightness(30%); // Más oscura
+    object-fit: cover;
+    height: 100%;
 `;
 
 const Body = styled.section`

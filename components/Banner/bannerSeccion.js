@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const BannerSeccion = ({seccion}) => {
   return (
-    <Banner id="banner" background={`http://rossetto-cc938.web.app/banner.jpeg`}>
+    <Banner id="banner" background={`https://images.unsplash.com/photo-1617638968441-0f701b56870e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80`}>
       <div className="container">
         <h1>{seccion}</h1>
       </div>
@@ -18,13 +18,14 @@ const Banner = styled.section`
   height: 300px;
   display: flex;
   align-items: center;
+  opacity: 0.99;
   @media(max-width:768px){
     height: 240px;
   }
   >div{
     >h1{
       float: right;
-      color: var(--secondary);
+      color: var(--white);
       font-size: 25px;
       font-weight: bold;
       text-transform: uppercase;

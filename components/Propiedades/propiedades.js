@@ -88,7 +88,9 @@ const Propiedades = () => {
                         dormitorios={inmueble.DORMITORIOS}
                         moneda={inmueble.MONEDA_PROPIEDAD}
                         precio={inmueble.PRECIO}
-                        descripcion={inmueble.DESCRIPCION}/>
+                        descripcion={inmueble.DESCRIPCION}
+                        categoria={inmueble.CATEGORIA}
+                        operacion={inmueble.OPERACION}/>
         </div>
       ))}
     </div>
