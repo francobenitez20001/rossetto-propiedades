@@ -36,6 +36,7 @@ const Propiedades = () => {
   }, [params]);
 
   useEffect(() => {
+    console.log('aca');
     if(!evitarRequest && filtrando){
       filtrarInmuebles();
       setEvitarRequest(true);//parche temporal para evitar doble request

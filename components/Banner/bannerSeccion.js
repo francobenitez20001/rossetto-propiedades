@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const BannerSeccion = ({seccion}) => {
   return (
-    <Banner id="banner" background={`${process.env.NEXT_PUBLIC_URL}/banner.jpeg`}>
+    <Banner id="banner" background={`http://rossetto-cc938.web.app/banner.jpeg`}>
       <div className="container">
         <h1>{seccion}</h1>
       </div>

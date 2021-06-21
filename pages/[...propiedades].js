@@ -4,11 +4,13 @@ import ListPropiedades from '../components/Propiedades/propiedades';
 import Footer from '../components/Footer/footer';
 import BannerSeccion from '../components/Banner/bannerSeccion';
 import FormFiltroPropiedades from '../components/FormBusqueda/formFiltroPropiedades';
-import {useContext,useEffect} from 'react';
+import {useContext} from 'react';
 import { InmuebleContext } from "../context/inmuebles/inmueblesContext";
+import FormContacto from '../components/Contacto/form';
+import TituloDestacado from '../components/tituloDestacado';
 
 export default function Propiedades() {
-  const {filtrando} = useContext(InmuebleContext);
+  const {filtrando,restablecerFiltros} = useContext(InmuebleContext);
   return (
     <>
       <Encabezado title="Rosetto Propiedades - Propiedades" description="Sitio oficial de Rossetto Propiedades. Encontrá la propiedad que buscas, todos nuestros conocimientos y herramientas a tu beneficio."/>
@@ -21,8 +23,12 @@ export default function Propiedades() {
             <option value="desc">Precios de mayor al menor</option>
           </select>
         </div>
+        {filtrando ? <BotonRestablecer onClick={()=>restablecerFiltros()}>Restablecer filtros</BotonRestablecer>:null}
         <hr/>
         <ListPropiedades/>
+        <hr/>
+        <TituloDestacado innerHtml="Contactanos"/>
+        <FormContacto/>
       </Row>
       <FormFiltroPropiedades/>
       <Footer/>
@@ -61,4 +67,16 @@ const Row = styled.main`
       }
     }
   }
+`;
+
+const BotonRestablecer = styled.button`
+  border:none;
+  padding:9px 13px;
+  border-radius:10px;
+  background-color:var(--primary);
+  color:var(--white);
+  font-family:'Open Sans',sans-serif;
+  font-size:12px;
+  font-weight:bold;
+  box-shadow:0px 2px 1px -1px rgba(228, 224, 224, 0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
 `;

@@ -20,7 +20,7 @@ const PartidosState = (props) => {
     try {
       const req = await fetch(`${API}/partidos`);
       const {partidos:data} = await req.json();
-      console.log(data);
+      //console.log(data);
       dispatch({
         type:PARTIDOS_TRAER_TODOS,
         payload:data

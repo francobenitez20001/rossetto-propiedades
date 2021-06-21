@@ -69,7 +69,7 @@ const FormBusqueda = () => {
     Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
   }
   return (
-      <WrapperForm background={`${process.env.NEXT_PUBLIC_URL}/form.jpg`}>
+      <WrapperForm background={`http://rossetto-cc938.web.app/form.jpg`}>
           <div className="container">
               <form onSubmit={handleSubmit}>
                 {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :

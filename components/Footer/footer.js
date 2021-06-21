@@ -9,7 +9,7 @@ const Footer = () => {
   return (
       <footer>
           <Container className="container">
-              <Logo src={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`}/>
+              <Logo src={`http://rossetto-cc938.web.app/logo.jpg`}/>
               <DataContacto>
                   <FontAwesomeIcon onClick={()=>window.open(`${data.facebook}`,'blank')} icon={faFacebook}/>
                   <FontAwesomeIcon onClick={()=>window.open(`${data.instagram}`,'blank')} icon={faInstagram}/>

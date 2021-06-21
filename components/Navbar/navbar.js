@@ -25,7 +25,7 @@ const Navbar = () => {
         <Nav>
             <header className="container">
                 <ContenedorLogo>
-                    <img src={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`} alt="Rosseto propiedades" className="img-fluid"/>
+                    <img src={`http://rossetto-cc938.web.app/logo.jpg`} alt="Rosseto propiedades" className="img-fluid"/>
                 </ContenedorLogo>
                 <Botonera className={showMenuMobile ? 'show' : ''}>
                     <FontAwesomeIcon icon={faArrowLeft} onClick={()=>setShowMenuMobile(!showMenuMobile)}/>

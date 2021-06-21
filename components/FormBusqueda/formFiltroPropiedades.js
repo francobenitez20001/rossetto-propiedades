@@ -7,6 +7,7 @@ import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
 import { useContext, useEffect, useState } from "react";
 import Spinner from "../Spinner";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 const FormFiltroPropiedades = () => {
   const {data:operaciones,error:errorOperaciones,traerTodas:traerOperaciones} = useContext(OperacionesContext);
@@ -79,7 +80,7 @@ const FormFiltroPropiedades = () => {
         {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :
         <Wrapper>
           <Box>
-            <label htmlFor="idOperacion">Tipo de propiedad</label>
+            <label htmlFor="idOperacion">Operación</label>
             <select className="form-control" id="idOperacion" name="idOperacion" onChange={handleChange} defaultValue={formValues.idOperacion}>
               <option value="">Seleccioná una operación</option>
               {operaciones.map(op=>(
@@ -88,9 +89,9 @@ const FormFiltroPropiedades = () => {
             </select>
           </Box>
           <Box>
-            <label htmlFor="idCategoria">Operación</label>
+            <label htmlFor="idCategoria">Tipo de propiedad</label>
             <select className="form-control" id="idCategoria" name="idCategoria" onChange={handleChange} defaultValue={formValues.idCategoria}>
-              <option value="">Seleccioná una categoria</option>
+              <option value="">Seleccioná un tipo de propiedad</option>
               {categorias.map(cat=>(
                 <option value={cat.idCategoria} key={cat.idCategoria}>{cat.categoria}</option>
               ))}

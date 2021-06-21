@@ -119,7 +119,7 @@ const InmuebleState = (props) => {
       type:INMUEBLE_LOADING
     })
     try {
-      const req = await fetch(`${API}/inmuebles?desde=0&cantidad=9&order=normal`);
+      const req = await fetch(`${API}/inmuebles?desde=0&cantidad=6&order=normal&destacada=1`);
       const {inmuebles} = await req.json();
       dispatch({
         type:INMUEBLE_TRAER_DESTACADAS,
@@ -149,7 +149,8 @@ const InmuebleState = (props) => {
   const restablecerFiltros = ()=>{
     dispatch({
       type:INMUEBLE_RESTABLECER_FILTROS
-    })
+    });
+    traerInmuebles();
   }
 
 

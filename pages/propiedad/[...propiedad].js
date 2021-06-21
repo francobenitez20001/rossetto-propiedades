@@ -9,11 +9,12 @@ import ServiciosPropiedad from "../../components/Propiedades/Servicios";
 import SliderPropiedades from "../../components/SliderPropiedades/Slider";
 import FormBusqueda from "../../components/FormBusqueda/form";
 import Footer from '../../components/Footer/footer';
-import TituloDestacado from "../../components/tituloDestacado";
 import {useContext,useEffect} from 'react';
 import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
 import { ContactoContext } from "../../context/contacto/contactoContext";
 import Spinner from "../../components/Spinner";
+import TituloDestacado from "../../components/tituloDestacado";
+import FormContacto from "../../components/Contacto/form";
 
 const Propiedad = (props) => {
   const router = useRouter();
@@ -44,8 +45,8 @@ const Propiedad = (props) => {
       {!seleccionado || loading || !data ? <div className="text-center pt-5"><Spinner/></div> :
       <>
         {/* ver esto, esta llamadno a google fonts 2 veces */}
-        <Encabezado title={`${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} - ${seleccionado.data.BARRIO}`} description={seleccionado.data.DESCRIPCION} url={window.location.href} facebook={data.facebook} image={seleccionado.data.HEADER}/>
-        <div className="container">
+        <Encabezado title={`Rossetto propiedades ofrece ${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} - ${seleccionado.data.BARRIO}`} description={seleccionado.data.DESCRIPCION} url={window.location.href} facebook={data.facebook} image={seleccionado.data.HEADER}/>
+        <div className="container pt-4">
           <Main className="row">
             <div className="col-12 col-md-7">
               <TituloDestacado innerHtml={`${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} - ${seleccionado.data.BARRIO}`}/>
@@ -58,6 +59,9 @@ const Propiedad = (props) => {
           <hr/>
           <DescripcionPropiedad/>
           <ServiciosPropiedad/>
+          <hr/>
+          <TituloDestacado innerHtml="Consultar por esta propiedad"/>
+          <FormContacto/>
         </div>
       </>
       }
