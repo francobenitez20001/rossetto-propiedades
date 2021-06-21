@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "deploy":"next export && firebase deploy"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build",
+    "export":"next export"
   },
   "cacheDirectories": [
     ".next/cache"
