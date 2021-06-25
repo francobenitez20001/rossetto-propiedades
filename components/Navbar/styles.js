@@ -74,6 +74,7 @@ export const List = styled.ul`
 export const Item = styled.li`
     display:inline-block;
     margin:0px 17px;
+    cursor: pointer;
     &:last-child{
         margin: 0px 0px 0px 20px;
     }

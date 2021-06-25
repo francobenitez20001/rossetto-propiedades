@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { ContactoContext } from "../../context/contacto/contactoContext";
 
-const Banner = () => {
+const Banner = (props) => {
   const {data,loading,error,traerInfo} = useContext(ContactoContext);
   useEffect(() => {
     if(!data){
@@ -14,8 +14,7 @@ const Banner = () => {
   return (
     <Slide>
       <div className="container">
-        <Principal>Encontra la propiedad ideal</Principal>
-        <Descripcion>Todos nuestros conocimientos y herramientas a tu beneficio</Descripcion>
+        {props.children}
         {!data ? null :
         <Redes>
           <Red onClick={()=>window.open(`${data.facebook}`,'blank')}>
@@ -32,7 +31,7 @@ const Banner = () => {
 
 const Slide = styled.div`
     background:url('https://images.unsplash.com/photo-1617638968441-0f701b56870e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80');
-    height:100vh;
+    height:70vh;
     background-repeat:no-repeat;
     background-size:cover;
     background-position-y:center;
@@ -54,24 +53,6 @@ const Slide = styled.div`
         }
     }
 
-    `;
-
-const Principal = styled.h1`
-    font-weight:bold;
-    font-size:50px;
-    @media(max-width:768px){
-        font-size:30px;
-    }
-`;
-
-const Descripcion = styled.h4`
-    font-weight:600;
-    font-size:27px;
-    line-height:80px;
-    @media(max-width:768px){
-        line-height:30px;
-        font-size:20px;
-    }
 `;
 
 const Redes = styled.div`
@@ -101,19 +82,17 @@ const Red = styled.div`
     }
     &:hover{
         background-color:var(--secondary);
-        >svg{width:22px;}
     }
 
     @media(min-width:768px){
-        margin:0px 30px;
-        width:60px;
-        height:60px;
-        border-radius:30px;
+        margin:0px 20px;
+        width:40px;
+        height:40px;
+        border-radius:20px;
         >svg{
-            width:25px;
+            width:18px;
         }
         &:hover{
-            >svg{width:27px;}
         }
     }
 `;
