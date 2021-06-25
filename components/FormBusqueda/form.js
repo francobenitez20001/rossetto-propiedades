@@ -18,9 +18,11 @@ const FormBusqueda = (props) => {
     idCategoria:'',
     idPartido:''
   });
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     getResources();
+    setShowForm(true);
   }, []);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const FormBusqueda = (props) => {
     Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
   }
   return (
-      <WrapperForm background={props.sinFondo ? '' : `http://rossetto-cc938.web.app/form.jpg`}>
+      <WrapperForm background={props.sinFondo ? '' : `http://rossetto-cc938.web.app/form.jpg`} className={showForm ? 'show' : ''}>
           <div className="container">
               <form onSubmit={handleSubmit}>
                 {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :
@@ -119,6 +121,12 @@ const WrapperForm = styled.section`
     background-repeat: no-repeat;
     background-size: cover;
     padding: 100px 0px;
+    position: relative;
+    left: -1000%;
+    transition: all .7s ease;
+    &.show{
+      left: 0;
+    }
 `;
 
 const Box = styled.div`

@@ -12,7 +12,7 @@ const Banner = (props) => {
     }
   }, [])
   return (
-    <Slide>
+    <Slide className="animated fadeIn">
       <div className="container">
         {props.children}
         {!data ? null :

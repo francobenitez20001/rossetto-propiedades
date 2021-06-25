@@ -5,7 +5,7 @@ const CardPropiedad = (props) => {
   const {idInmueble,header,partido,barrio,dormitorios,moneda,precio,descripcion,categoria,operacion} = props;
   return (
     <Link href={`/propiedad/${idInmueble}`}>
-      <Card width={props.fullWidth}>
+      <Card width={props.fullWidth} className="animated fadeIn">
           <Header>
               <img src={header} alt={`Rossetto Propiedades publica propiedad en ${partido} barrio ${barrio}. ${descripcion}`}/>
           </Header>
