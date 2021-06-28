@@ -71,7 +71,7 @@ const FormBusqueda = (props) => {
     Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
   }
   return (
-      <WrapperForm background={props.sinFondo ? '' : `http://rossetto-cc938.web.app/form.jpg`} className={showForm ? 'show' : ''}>
+      <WrapperForm background={props.sinFondo ? '' : `${document.location.origin}/form.jpg`} className={showForm ? 'show' : ''}>
           <div className="container">
               <form onSubmit={handleSubmit}>
                 {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :

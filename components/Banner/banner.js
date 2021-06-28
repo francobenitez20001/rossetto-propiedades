@@ -1,14 +1,20 @@
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ContactoContext } from "../../context/contacto/contactoContext";
 
+
 const Banner = (props) => {
   const {data,loading,error,traerInfo} = useContext(ContactoContext);
+  const [bannerImage, setBannerImage] = useState('');
+
   useEffect(() => {
     if(!data){
       traerInfo();
+    }
+    if(document){
+      setBannerImage(`${document.location.origin}/portada.jpg`)
     }
   }, [])
   return (
