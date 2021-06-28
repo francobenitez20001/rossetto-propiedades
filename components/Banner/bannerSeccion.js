@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const BannerSeccion = ({seccion}) => {
   return (
-    <Banner id="banner" className="animated fadeIn" background={`https://images.unsplash.com/photo-1617638968441-0f701b56870e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80`}>
+    <Banner id="banner" className="animated fadeIn" background={`https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80`}>
       <div className="container">
         <h1>{seccion}</h1>
       </div>
