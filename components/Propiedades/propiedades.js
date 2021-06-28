@@ -5,11 +5,12 @@ import { useEffect, useContext, useState } from "react";
 import Spinner from "../Spinner";
 import Router, { useRouter } from 'next/router';
 import Swal from "sweetalert2";
+import styled from "styled-components";
 
 const Propiedades = () => {
   const router = useRouter();
   const {query:{propiedades:params}} = router;
-  const {data:propiedades,filtrando,filtros,loading,error,traerInmuebles,aplicarFiltros,filtrarInmuebles} = useContext(InmuebleContext);
+  const {data:propiedades,filtrando,filtros,sinResultados,loading,loadingMasPropiedades,error,pagination,traerInmuebles,aplicarFiltros,filtrarInmuebles,updatePagination,traerMasInmuebles} = useContext(InmuebleContext);
   const {data:categorias,traerTodas:traerCategorias} = useContext(CategoriaContext);
   const [evitarRequest, setEvitarRequest] = useState(false);
 
@@ -36,7 +37,7 @@ const Propiedades = () => {
   }, [params]);
 
   useEffect(() => {
-    console.log('aca');
+    //console.log('aca');
     if(!evitarRequest && filtrando){
       filtrarInmuebles();
       setEvitarRequest(true);//parche temporal para evitar doble request
@@ -55,6 +56,12 @@ const Propiedades = () => {
     }
   }, [propiedades]);
 
+  useEffect(() => {
+    if(pagination.desde > 0){
+      traerMasInmuebles();
+    }
+  }, [pagination])
+
   const aplicarFiltroCategoria = (param)=>{
     let categoriaSeleccionada = categorias.filter(categoria=>categoria.categoria.toLowerCase() == param);
     if(categoriaSeleccionada.length==0){
@@ -71,30 +78,56 @@ const Propiedades = () => {
     })
   }
 
+  const renderElementLoadMore = ()=>{
+    if(loadingMasPropiedades){
+      return <div className="text-center"><Spinner/></div>
+    }
+    if(sinResultados){
+      return <div className="alert alert-warning text-center">No se encontraron más resultados</div>
+    }
+    return <div className="text-center"><BotonVerMas onClick={updatePagination}>Traer más</BotonVerMas></div>
+  }
+
   if(error){
     return <div className="alert alert-danger">Error al obtener las propiedades, intente más tarde</div>
   }
 
   return (
     loading ?<div className="text-center"><Spinner/></div> :
-    <div className="row">
-      {propiedades.map((inmueble)=>(
-        <div key={inmueble.ID_INMUEBLE} className="my-3 col-12 col-md-4">
-          <CardPropiedad fullWidth="true"
-                        idInmueble={inmueble.ID_INMUEBLE}
-                        header={inmueble.HEADER}
-                        partido={inmueble.PARTIDO}
-                        barrio={inmueble.BARRIO}
-                        dormitorios={inmueble.DORMITORIOS}
-                        moneda={inmueble.MONEDA_PROPIEDAD}
-                        precio={inmueble.PRECIO}
-                        descripcion={inmueble.DESCRIPCION}
-                        categoria={inmueble.CATEGORIA}
-                        operacion={inmueble.OPERACION}/>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="row">
+        {propiedades.map((inmueble)=>(
+          <div key={inmueble.ID_INMUEBLE} className="my-3 col-12 col-md-4">
+            <CardPropiedad fullWidth="true"
+                          idInmueble={inmueble.ID_INMUEBLE}
+                          header={inmueble.HEADER}
+                          partido={inmueble.PARTIDO}
+                          barrio={inmueble.BARRIO}
+                          dormitorios={inmueble.DORMITORIOS}
+                          moneda={inmueble.MONEDA_PROPIEDAD}
+                          precio={inmueble.PRECIO}
+                          descripcion={inmueble.DESCRIPCION}
+                          categoria={inmueble.CATEGORIA}
+                          operacion={inmueble.OPERACION}/>
+          </div>
+        ))}
+      </div>
+      {renderElementLoadMore()}
+    </>
   );
 }
+
+const BotonVerMas = styled.button`
+  border:none;
+  padding:9px 13px;
+  border-radius:10px;
+  background-color:var(--primary);
+  color:var(--white);
+  font-family:'Open Sans',sans-serif;
+  font-size:12px;
+  font-weight:bold;
+  box-shadow:0px 2px 1px -1px rgba(228, 224, 224, 0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  margin: 0 auto;
+`;
 
 export default Propiedades;
