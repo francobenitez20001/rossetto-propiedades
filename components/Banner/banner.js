@@ -63,6 +63,9 @@ const Redes = styled.div`
     align-items:center;
     justify-content:center;
     width:100%;
+    @media(max-width:768px){
+      bottom: 24px;
+    }
 `;
 
 const Red = styled.div`
