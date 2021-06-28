@@ -30,14 +30,51 @@ const InmuebleState = (props) => {
 
   const [state, dispatch] = useReducer(inmueblesReducer, INTIAL_STATE);
 
-  const traerInmuebles = async()=>{
+  const traerInmuebles = async(desde=null)=>{
     dispatch({
       type:INMUEBLE_LOADING
     });
     let limit = isMobile() ? state.pagination.limiteMobile : state.pagination.limiteDesktop;
+    let minimo = desde==0 ? desde : state.pagination.desde;
     try {
-      const req = await fetch(`${API}/inmuebles?desde=${state.pagination.desde}&cantidad=${limit}&order=${state.order}`);
+      const req = await fetch(`${API}/inmuebles?desde=${minimo}&cantidad=${limit}&order=${state.order}`);
       const {inmuebles} = await req.json();
+      dispatch({
+        type:INMUEBLE_TRAER_TODOS,
+        payload:inmuebles
+      })
+    } catch (error) {
+      dispatch({
+        type:INMUEBLE_ERROR,
+        payload:error
+      })
+    }
+  }
+
+  const filtrarInmuebles = async()=>{
+    dispatch({
+      type:INMUEBLE_LOADING
+    })
+    try {
+      let limit = isMobile() ? state.pagination.limiteMobile : state.pagination.limiteDesktop;
+      let url = `${API}/inmuebles/filtrar?`;
+      if(state.filtros.idOperacion){
+        url += `idOperacion=${state.filtros.idOperacion}&`;
+      }
+      if(state.filtros.idCategoria){
+        url += `idCategoria=${state.filtros.idCategoria}&`;
+      }
+      if(state.filtros.idPartido){
+        url += `idPartido=${state.filtros.idPartido}&`;
+      }
+      url += `order=${state.order}&cantidad=${limit}&desde=0`
+      const req = await fetch(url);
+      const {inmuebles} = await req.json();
+      if(!inmuebles.length){
+        return dispatch({
+          type:INMUEBLE_SIN_RESULTADOS
+        })
+      }
       dispatch({
         type:INMUEBLE_TRAER_TODOS,
         payload:inmuebles
@@ -75,9 +112,9 @@ const InmuebleState = (props) => {
     }
   }
 
-  const filtrarInmuebles = async()=>{
+  const traerMasFiltradas = async()=>{
     dispatch({
-      type:INMUEBLE_LOADING
+      type:INMUEBLE_LOADING_MAS
     })
     try {
       let limit = isMobile() ? state.pagination.limiteMobile : state.pagination.limiteDesktop;
@@ -94,8 +131,13 @@ const InmuebleState = (props) => {
       url += `order=${state.order}&cantidad=${limit}&desde=${state.pagination.desde}`
       const req = await fetch(url);
       const {inmuebles} = await req.json();
+      if(!inmuebles.length){
+        return dispatch({
+          type:INMUEBLE_SIN_RESULTADOS
+        })
+      }
       dispatch({
-        type:INMUEBLE_TRAER_TODOS,
+        type:INMUEBLE_TRAER_MAS,
         payload:inmuebles
       })
     } catch (error) {
@@ -105,6 +147,7 @@ const InmuebleState = (props) => {
       })
     }
   }
+
 
   const traerInmueble = async id=>{
     dispatch({
@@ -163,7 +206,7 @@ const InmuebleState = (props) => {
     dispatch({
       type:INMUEBLE_RESTABLECER_FILTROS
     });
-    traerInmuebles();
+    traerInmuebles(0);
   }
 
 
@@ -186,6 +229,7 @@ const InmuebleState = (props) => {
         filtrarInmuebles,
         traerInmueble,
         traerDestacadas,
+        traerMasFiltradas,
         updatePagination,
         aplicarFiltros,
         restablecerFiltros

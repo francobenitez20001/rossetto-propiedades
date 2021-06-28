@@ -50,6 +50,10 @@ const inmueblesReducer = (state,action) => {
           idCategoria:null,
           idPartido:null
         },
+        pagination:{
+          ...state.pagination,
+          desde:0
+        },
         order:'normal'
       }
     case INMUEBLE_SIN_RESULTADOS:

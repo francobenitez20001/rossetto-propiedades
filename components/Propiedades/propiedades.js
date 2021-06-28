@@ -10,7 +10,7 @@ import styled from "styled-components";
 const Propiedades = () => {
   const router = useRouter();
   const {query:{propiedades:params}} = router;
-  const {data:propiedades,filtrando,filtros,sinResultados,loading,loadingMasPropiedades,error,pagination,traerInmuebles,aplicarFiltros,filtrarInmuebles,updatePagination,traerMasInmuebles} = useContext(InmuebleContext);
+  const {data:propiedades,filtrando,filtros,sinResultados,loading,loadingMasPropiedades,error,pagination,traerInmuebles,aplicarFiltros,filtrarInmuebles,updatePagination,traerMasInmuebles,traerMasFiltradas} = useContext(InmuebleContext);
   const {data:categorias,traerTodas:traerCategorias} = useContext(CategoriaContext);
   const [evitarRequest, setEvitarRequest] = useState(false);
 
@@ -58,7 +58,11 @@ const Propiedades = () => {
 
   useEffect(() => {
     if(pagination.desde > 0){
-      traerMasInmuebles();
+      if(filtrando){
+        traerMasFiltradas();
+      }else{
+        traerMasInmuebles();
+      }
     }
   }, [pagination])
 
