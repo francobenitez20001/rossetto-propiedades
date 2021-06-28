@@ -57,6 +57,7 @@ export default createGlobalStyle`
       left: 8px;
       animation: lds-ellipsis1 0.6s infinite;
     }
+
     .lds-ellipsis div:nth-child(2) {
       left: 8px;
       animation: lds-ellipsis2 0.6s infinite;
