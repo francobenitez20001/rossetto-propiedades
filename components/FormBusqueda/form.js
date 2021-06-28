@@ -19,10 +19,14 @@ const FormBusqueda = (props) => {
     idPartido:''
   });
   const [showForm, setShowForm] = useState(false);
+  const [fondoImagenForm, setFondoImagenForm] = useState('');
 
   useEffect(() => {
     getResources();
     setShowForm(true);
+    if(!props.sinFondo && document){
+      setFondoImagenForm(`${document.location.origin}/form.jpg`);
+    }
   }, []);
 
   useEffect(() => {
@@ -71,7 +75,7 @@ const FormBusqueda = (props) => {
     Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
   }
   return (
-      <WrapperForm background={props.sinFondo ? '' : `${document.location.origin}/form.jpg`} className={showForm ? 'show' : ''}>
+      <WrapperForm background={props.sinFondo ? '' : fondoImagenForm} className={showForm ? 'show' : ''}>
           <div className="container">
               <form onSubmit={handleSubmit}>
                 {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :
