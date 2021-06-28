@@ -8,7 +8,7 @@ import Spinner from '../Spinner';
 import Swal from "sweetalert2";
 import Router from 'next/router';
 
-const FormBusqueda = () => {
+const FormBusqueda = (props) => {
   const {data:operaciones,error:errorOperaciones,traerTodas:traerOperaciones} = useContext(OperacionesContext);
   const {data:categorias,error:errorCategorias,traerTodas:traerCategorias} = useContext(CategoriaContext);
   const {data:partidos,error:errorPartidos,traerTodos:traerPartidos} = useContext(PartidosContext);
@@ -18,9 +18,11 @@ const FormBusqueda = () => {
     idCategoria:'',
     idPartido:''
   });
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     getResources();
+    setShowForm(true);
   }, []);
 
   useEffect(() => {
@@ -69,38 +71,38 @@ const FormBusqueda = () => {
     Swal.fire('Error','Ha ocurrido un error, vuelva mas tarde', 'warning');
   }
   return (
-      <WrapperForm background={`http://rossetto-cc938.web.app/form.jpg`}>
+      <WrapperForm background={props.sinFondo ? '' : `http://rossetto-cc938.web.app/form.jpg`} className={showForm ? 'show' : ''}>
           <div className="container">
               <form onSubmit={handleSubmit}>
                 {!operaciones.length || !categorias.length || !partidos.length ? <Spinner/> :
                 <div className="row">
-                    <div className="col-12 col-md-3 my-2">
+                    <Box className="col-12 col-md-3 my-2">
                         <select className="form-control" name="idOperacion" defaultValue={formValues.idOperacion} onChange={handleChange}>
                             <option value="">Seleccioná una operación</option>
                             {operaciones.map(op=>(
                               <option value={op.idOperacion} key={op.idOperacion}>{op.operacion}</option>
                             ))}
                         </select>
-                    </div>
-                    <div className="col-12 col-md-3 my-2">
+                    </Box>
+                    <Box className="col-12 col-md-3 my-2">
                         <select className="form-control" name="idCategoria" defaultValue={formValues.idCategoria} onChange={handleChange}>
                             <option value="">Seleccioná una categoria</option>
                             {categorias.map(cat=>(
                               <option value={cat.idCategoria} key={cat.idCategoria}>{cat.categoria}</option>
                             ))}
                         </select>
-                    </div>
-                    <div className="col-12 col-md-3 my-2">
+                    </Box>
+                    <Box className="col-12 col-md-3 my-2">
                         <select className="form-control" name="idPartido" defaultValue={formValues.idPartido} onChange={handleChange}>
                             <option value="">Seleccioná un partido</option>
                             {partidos.map(par=>(
                               <option value={par.idPartido} key={par.idPartido}>{par.partido}</option>
                             ))}
                         </select>
-                    </div>
-                    <div className="col-12 col-md-3 my-2">
+                    </Box>
+                    <Box className="col-12 col-md-3 my-2">
                         <Submit type="submit" value="Buscar propiedades"/>
-                    </div>
+                    </Box>
                 </div>
                 }
               </form>
@@ -119,16 +121,51 @@ const WrapperForm = styled.section`
     background-repeat: no-repeat;
     background-size: cover;
     padding: 100px 0px;
+    position: relative;
+    left: -1000%;
+    transition: all .7s ease;
+    &.show{
+      left: 0;
+    }
+`;
+
+const Box = styled.div`
+    >label{
+        position: absolute;
+        top: -30px;
+        color: var(--secondary);
+    }
+    >select{
+        position: relative;
+        top:1px;
+        width: 100%;
+        font-size: 17px;
+        box-shadow: none;
+        padding: .5rem .75rem;
+        border: 1px solid #e0ecf5;
+        line-height: 1.25;
+        color: var(--secondary);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        touch-action: manipulation;
+        background: #f2f3f2;
+        border-color: #f2f3f5;
+        border-radius: 4px;
+    }
+    >select{
+        height: 56px;
+    }
 `;
 
 const Submit = styled.input`
     float: right;
     display: flex;
     align-items: center;
+    justify-content: center;
     border:none;
     padding:5px 30px;
     border-radius:15px;
     font-size: 15px;
+    height: 56px;
     font-weight: 600;
     background-color: var(--primary);
     color: var(--white);

@@ -18,13 +18,14 @@ export default function Home() {
     <>
       <Encabezado title="Rosetto Propiedades - Inicio" description="Sitio oficial de Rossetto Propiedades. Encontrá la propiedad que buscas, todos nuestros conocimientos y herramientas a tu beneficio."/>
 
-      <Banner/>
+      <Banner>
+        <FormBusqueda sinFondo={true}/>
+      </Banner>
       <div className="container my-5">
         <Categorias/>
       </div>
       <SliderPropiedades/>
       <br/>
-      <FormBusqueda/>
       <Footer/>
     </>
   )

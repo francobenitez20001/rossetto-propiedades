@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const CardCategoria = (props) => {
     return (
-        <Card>
+        <Card className="animated fadeIn">
             <Header>
                 <FotoCat src={props.foto} alt={`${props.categoria} en Pilar y alrededores. Rossetto propiedades`}/>
                 <h3>{props.categoria}</h3>
