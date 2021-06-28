@@ -1,13 +1,22 @@
 import styled from "styled-components";
 import Link from 'next/link';
+import Spinner from '../Spinner';
+import { useState } from "react";
 
 const CardPropiedad = (props) => {
+  const [loadImage, setLoadImage] = useState(false);
   const {idInmueble,header,partido,barrio,dormitorios,moneda,precio,descripcion,categoria,operacion} = props;
+
+  const handleLoad = e=>{
+    setLoadImage(true);
+  }
+
   return (
     <Link href={`/propiedad/${idInmueble}`}>
       <Card width={props.fullWidth} className="animated fadeIn">
           <Header>
-              <img src={header} alt={`Rossetto Propiedades publica propiedad en ${partido} barrio ${barrio}. ${descripcion}`}/>
+              {loadImage ? null : <Spinner/>}
+              <img className={loadImage ? '' : 'd-none'} onLoad={handleLoad} src={header} alt={`Rossetto Propiedades publica propiedad en ${partido} barrio ${barrio}. ${descripcion}`}/>
           </Header>
           <Footer>
               <div>
