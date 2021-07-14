@@ -1,22 +1,16 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import styled from "styled-components";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import Link from 'next/link';
-import Spinner from '../Spinner';
-import { useState } from "react";
 
 const CardPropiedad = (props) => {
-  const [loadImage, setLoadImage] = useState(false);
   const {idInmueble,header,partido,barrio,dormitorios,moneda,precio,descripcion,categoria,operacion} = props;
-
-  const handleLoad = e=>{
-    setLoadImage(true);
-  }
 
   return (
     <Link href={`/propiedad/${idInmueble}`}>
       <Card width={props.fullWidth} className="animated fadeIn">
           <Header>
-              {loadImage ? null : <Spinner/>}
-              <img className={loadImage ? '' : 'd-none'} onLoad={handleLoad} src={header} alt={`Rossetto Propiedades publica propiedad en ${partido} barrio ${barrio}. ${descripcion}`}/>
+              <LazyLoadImage effect="blur" src={header} alt={`Rossetto Propiedades publica propiedad en ${partido} barrio ${barrio}. ${descripcion}`}  width="100%" height="100%" style={{objectFit:'cover'}}/>
           </Header>
           <Footer>
               <div>

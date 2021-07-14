@@ -4,6 +4,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from "sweetalert2";
 import { doc } from "prettier";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SlideX = (props) => {
 
@@ -94,7 +95,7 @@ const SlideX = (props) => {
               <Indicadores id={props.idIndicadores}>
                 {props.indicators.map(img=>(
                   <div className="col-2" key={img.idImagen}>
-                    <img src={img.nombre}/>
+                    <LazyLoadImage src={img.nombre} width="100%" height="100%" style={{filter:'brightness(30%)'}}/>
                   </div>
                 ))}
               </Indicadores>

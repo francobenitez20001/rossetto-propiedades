@@ -1,11 +1,13 @@
 import Router from "next/router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import styled from "styled-components";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const CardCategoria = (props) => {
     return (
         <Card className="animated fadeIn">
             <Header>
-                <FotoCat src={props.foto} alt={`${props.categoria} en Pilar y alrededores. Rossetto propiedades`}/>
+                <LazyLoadImage effect="blur" src={props.foto} alt={`${props.categoria} en Pilar y alrededores. Rossetto propiedades`} width="100%" height="100%" style={{objectFit:'cover',filter:"brightness(30%)"}}/>
                 <h3>{props.categoria}</h3>
             </Header>
             <Body>
@@ -46,13 +48,6 @@ const Header = styled.div`
         font-size:22px;
         color:var(--white);
     }
-`;
-
-const FotoCat = styled.img`
-    width:100%;
-    filter: brightness(30%); // Más oscura
-    object-fit: cover;
-    height: 100%;
 `;
 
 const Body = styled.section`

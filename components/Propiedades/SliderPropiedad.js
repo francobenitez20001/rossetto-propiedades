@@ -1,6 +1,8 @@
 import SlideX from "../Sliders/slideX";
 import { InmuebleContext } from "../../context/inmuebles/inmueblesContext";
 import { useContext } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const SliderPropiedad = (props) => {
   const {seleccionado:{imagenes}} = useContext(InmuebleContext);
@@ -14,7 +16,7 @@ const SliderPropiedad = (props) => {
       sliderMobile={true}>
       {imagenes.map(img=>(
         <div className="col-12 imagenPropiedad mx-2" key={img.idImagen}>
-          <img src={img.nombre} className="w-100"/>
+          <LazyLoadImage src={img.nombre} width="100%" effect="blur"/>
         </div>
       ))}
     </SlideX>
