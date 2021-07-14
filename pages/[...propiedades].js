@@ -79,4 +79,7 @@ const BotonRestablecer = styled.button`
   font-size:12px;
   font-weight:bold;
   box-shadow:0px 2px 1px -1px rgba(228, 224, 224, 0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+  @media(max-width:768px){
+    margin:10px 0px;
+  }
 `;

@@ -1,8 +1,16 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const BannerSeccion = ({seccion}) => {
+  const [bannerImage, setBannerImage] = useState('');
+  useEffect(() => {
+    if(document){
+      setBannerImage(`${document.location.origin}/portada.jpg`);
+    }
+  }, [])
+
   return (
-    <Banner id="banner" className="animated fadeIn" background={`https://images.unsplash.com/photo-1617638968441-0f701b56870e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80`}>
+    <Banner id="banner" className="animated fadeIn" background={bannerImage}>
       <div className="container">
         <h1>{seccion}</h1>
       </div>

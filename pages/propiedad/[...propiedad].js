@@ -61,7 +61,7 @@ const Propiedad = (props) => {
           <ServiciosPropiedad/>
           <hr/>
           <TituloDestacado innerHtml="Consultar por esta propiedad"/>
-          <FormContacto/>
+          <FormContacto propiedad={seleccionado.data.ID_INMUEBLE}/>
         </div>
       </>
       }

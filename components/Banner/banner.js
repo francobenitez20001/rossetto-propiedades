@@ -1,14 +1,20 @@
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { ContactoContext } from "../../context/contacto/contactoContext";
 
+
 const Banner = (props) => {
   const {data,loading,error,traerInfo} = useContext(ContactoContext);
+  const [bannerImage, setBannerImage] = useState('');
+
   useEffect(() => {
     if(!data){
       traerInfo();
+    }
+    if(document){
+      setBannerImage(`${document.location.origin}/portada.jpg`)
     }
   }, [])
   return (
@@ -30,7 +36,7 @@ const Banner = (props) => {
 }
 
 const Slide = styled.div`
-    background:url('https://images.unsplash.com/photo-1617638968441-0f701b56870e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=966&q=80');
+    background:url('https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
     height:70vh;
     background-repeat:no-repeat;
     background-size:cover;
@@ -63,6 +69,9 @@ const Redes = styled.div`
     align-items:center;
     justify-content:center;
     width:100%;
+    @media(max-width:768px){
+      bottom: 24px;
+    }
 `;
 
 const Red = styled.div`

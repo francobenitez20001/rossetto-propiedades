@@ -40,7 +40,7 @@ const InfoContacto = () => {
             </IconArea>
             <Info>
                 <Subtitle>Email</Subtitle>
-                <Descripcion>info@burguenio.com</Descripcion>
+                <Descripcion>giselarossetto@gmail.com</Descripcion>
             </Info>
         </Item>
     </>
