@@ -82,22 +82,19 @@ const Propiedades = () => {
     })
   }
 
-  const renderElementLoadMore = ()=>{
-    if(loadingMasPropiedades){
-      return <div className="text-center"><Spinner/></div>
-    }
-    if(sinResultados){
-      return <div className="alert alert-warning text-center">No se encontraron más resultados</div>
-    }
-    return <div className="text-center"><BotonVerMas onClick={updatePagination}>Traer más</BotonVerMas></div>
-  }
-
   if(error){
     return <div className="alert alert-danger">Error al obtener las propiedades, intente más tarde</div>
   }
 
+  if(loading || loadingMasPropiedades){
+    return <div className="text-center"><Spinner/></div>
+  }
+
+  if(sinResultados){
+    return <div className="alert alert-warning text-center">No se encontraron resultados</div>
+  }
+
   return (
-    loading ?<div className="text-center"><Spinner/></div> :
     <>
       <div className="row">
         {propiedades.map((inmueble)=>(
@@ -116,7 +113,7 @@ const Propiedades = () => {
           </div>
         ))}
       </div>
-      {renderElementLoadMore()}
+      {propiedades.length < pagination.limiteDesktop  ? null : <div className="text-center"><BotonVerMas onClick={updatePagination}>Traer más</BotonVerMas></div> }
     </>
   );
 }

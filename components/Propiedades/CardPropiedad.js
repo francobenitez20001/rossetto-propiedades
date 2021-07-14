@@ -14,7 +14,7 @@ const CardPropiedad = (props) => {
           </Header>
           <Footer>
               <div>
-                  <Lugar>{dormitorios == 0 ? `${categoria} - ` : ''}{partido} - {barrio}</Lugar>
+                  <Lugar>{dormitorios == 0 ? `${categoria} - ` : ''}{partido} - {barrio === '-' ? categoria : barrio}</Lugar>
                   <DatoExtra>{dormitorios == 0 ? operacion : `Dormitorios: ${dormitorios}`}</DatoExtra>
               </div>
               <Price>

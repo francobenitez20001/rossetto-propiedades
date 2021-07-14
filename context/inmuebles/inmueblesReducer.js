@@ -61,6 +61,8 @@ const inmueblesReducer = (state,action) => {
         ...state,
         sinResultados:true,
         loadingMasPropiedades:false,
+        loading:false,
+        error:null,
         pagination:{
           ...state.pagination,
           desde:0

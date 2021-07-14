@@ -49,7 +49,7 @@ const Propiedad = (props) => {
         <div className="container pt-4">
           <Main className="row">
             <div className="col-12 col-md-7">
-              <TituloDestacado innerHtml={`${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} - ${seleccionado.data.BARRIO}`}/>
+              <TituloDestacado innerHtml={`${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} ${seleccionado.data.BARRIO === '-' ? '' : '- ' + seleccionado.data.BARRIO}`}/>
               <SliderPropiedad/>
             </div>
             <div className="col-12 col-md-5">

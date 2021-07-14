@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useEffect,useContext } from "react";
 import { ContactoContext } from "../../context/contacto/contactoContext";
 import Spinner from '../Spinner';
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const InfoContacto = () => {
   const {data,loading,error,traerInfo} = useContext(ContactoContext);
@@ -36,11 +37,21 @@ const InfoContacto = () => {
         </Item>
         <Item>
             <IconArea>
+                <FontAwesomeIcon icon={faWhatsapp}/>
+            </IconArea>
+            <Info>
+                <Subtitle>Whatsapp</Subtitle>
+                <Descripcion>{data.whatsapp}</Descripcion>
+            </Info>
+        </Item>
+        <Item>
+            <IconArea>
                 <FontAwesomeIcon icon={faEnvelope}/>
             </IconArea>
             <Info>
                 <Subtitle>Email</Subtitle>
-                <Descripcion>giselarossetto@gmail.com</Descripcion>
+                <MailTo href="mailto:giselarossetto@gmail.com">giselarossetto@gmail.com</MailTo>
+                <MailTo href="mailto:giselarossetto@yahoo.com.ar">giselarossetto@yahoo.com.ar</MailTo>
             </Info>
         </Item>
     </>
@@ -90,6 +101,16 @@ const Descripcion = styled.span`
     font-size: 16px;
     line-height: 1.5;
     color: var(--secondary);
+`;
+
+const MailTo = styled.a`
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--secondary);
+    &:hover{
+      text-decoration: none;
+      color: var(--secondary);
+    }
 `;
 
 export default InfoContacto;

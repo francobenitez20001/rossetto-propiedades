@@ -16,7 +16,7 @@ const Footer = () => {
                   {/* <FontAwesomeIcon onClick={()=>window.open(`${data.twitter}`,'blank')} icon={faTwitter}/> */}
                   <span>&copy; {new Date().getFullYear()} Todos los derechos reservados</span>
               </DataContacto>
-              <p>Power by Franco Benitez Solutions</p>
+              <p>Power by FHB Soluciones</p>
           </Container>
       </footer>
   );
