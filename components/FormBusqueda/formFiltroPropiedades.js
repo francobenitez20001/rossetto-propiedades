@@ -102,6 +102,7 @@ const FormFiltroPropiedades = () => {
             <select className="form-control" id="idPartido" name="idPartido" onChange={handleChange} defaultValue={formValues.idPartido}>
               <option value="">Seleccioná un partido</option>
               {partidos.map(par=>(
+                par.partido === '-' ? null :
                 <option value={par.idPartido} key={par.idPartido}>{par.partido}</option>
               ))}
             </select>
