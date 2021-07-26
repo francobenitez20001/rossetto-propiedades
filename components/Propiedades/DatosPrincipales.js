@@ -49,7 +49,7 @@ const DatosPrincipales = (props) => {
         <div>
           <FontAwesomeIcon icon={faRulerCombined}/>
         </div>
-        <span>Sup. Total: {data.SUPERFICIE_TOTAL} {data.UNIDAD_MEDIDA}</span>
+        <span>Sup. Terreno: {data.SUPERFICIE_TERRENO} {data.UNIDAD_MEDIDA}</span>
       </Dato>
     </InfoContainer>
   );
