@@ -7,7 +7,7 @@ const CardCategoria = (props) => {
     return (
         <Card className="animated fadeIn">
             <Header>
-                <LazyLoadImage effect="blur" src={props.foto} alt={`${props.categoria} en Pilar y alrededores. Rossetto propiedades`} width="100%" height="100%" style={{objectFit:'cover',filter:"brightness(30%)"}}/>
+                <LazyLoadImage effect="blur" src={props.foto} alt={`${props.categoria} en Pilar y alrededores. Rossetto propiedades`} width="100%" height="100%" style={{objectFit:'cover',filter:"brightness(55%)"}}/>
                 <h3>{props.categoria}</h3>
             </Header>
             <Body>
@@ -36,8 +36,6 @@ const Header = styled.div`
     width:100%;
     height:70%;
     position: relative;
-    background-color: rgba(0,0,0,0);
-    opacity: 0.99;
     >h3{
         position: absolute;
         top:50%;
