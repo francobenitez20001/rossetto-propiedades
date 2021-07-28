@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useContext } from "react";
 import { ContactoContext } from "../../context/contacto/contactoContext";
+import { URL } from "../../config";
 const { faInstagram, faFacebook, faTwitter } = require("@fortawesome/free-brands-svg-icons")
 const { FontAwesomeIcon } = require("@fortawesome/react-fontawesome")
 
@@ -9,7 +10,7 @@ const Footer = () => {
   return (
       <footer>
           <Container className="container">
-              <Logo src={`http://rossetto-cc938.web.app/logo.jpg`}/>
+              <Logo src={`${URL}/logo.jpg`}/>
               <DataContacto>
                   <FontAwesomeIcon onClick={()=>window.open(`${data.facebook}`,'blank')} icon={faFacebook}/>
                   <FontAwesomeIcon onClick={()=>window.open(`${data.instagram}`,'blank')} icon={faInstagram}/>

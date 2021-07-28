@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {Nav,ContenedorLogo,Botonera,List,Item, ItemActive} from './styles';
 import {useRouter} from 'next/router';
+import { URL } from '../../config';
 
 const Navbar = () => {
     const [showMenuMobile, setShowMenuMobile] = useState(false);
@@ -30,7 +31,7 @@ const Navbar = () => {
         <Nav>
             <header className="container">
                 <ContenedorLogo>
-                    <img src={`http://rossetto-cc938.web.app/logo.jpg`} alt="Rosseto propiedades" className="img-fluid"/>
+                    <img src={`${URL}/logo.jpg`} alt="Rosseto propiedades" className="img-fluid"/>
                 </ContenedorLogo>
                 <Botonera className={showMenuMobile ? 'show' : ''}>
                     <FontAwesomeIcon icon={faArrowLeft} onClick={()=>setShowMenuMobile(!showMenuMobile)}/>
