@@ -121,6 +121,14 @@ export default createGlobalStyle`
     animation-fill-mode: both;
   }
 
+  .lazy-load-image-background.blur.lazy-load-image-loaded > img {
+    object-fit: contain;
+  }
+
+  .huOiqs >div>img {
+    object-fit: cover;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;

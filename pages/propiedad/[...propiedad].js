@@ -48,10 +48,10 @@ const Propiedad = (props) => {
         <Encabezado title={`Rossetto propiedades ofrece ${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} - ${seleccionado.data.BARRIO}`} description={seleccionado.data.DESCRIPCION} url={window.location.href} facebook={data.facebook} image={seleccionado.data.HEADER}/>
         <div className="container pt-4">
           <Main className="row">
-            <div className="col-12 col-md-7">
+            <FotosPropiedad className="col-12 col-md-7">
               <TituloDestacado innerHtml={`${seleccionado.data.OPERACION} - ${seleccionado.data.PARTIDO} ${seleccionado.data.BARRIO === '-' ? '' : '- ' + seleccionado.data.BARRIO}`}/>
               <SliderPropiedad/>
-            </div>
+            </FotosPropiedad>
             <div className="col-12 col-md-5">
               <DatosPrincipales/>
             </div>
@@ -81,5 +81,8 @@ const Main = styled.div`
   }
 `;
 
+const FotosPropiedad = styled.div`
+  height: 700px;
+`;
 
 export default Propiedad;

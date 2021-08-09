@@ -11,12 +11,13 @@ const SliderPropiedad = (props) => {
       pages={imagenes.length}
       classItem="imagenPropiedad"
       idSlider="slider-propiedad"
+      height={575}
       indicators={imagenes}
       idIndicadores="indicadores-propiedad"
       sliderMobile={true}>
       {imagenes.map(img=>(
-        <div className="col-12 imagenPropiedad mx-2" key={img.idImagen}>
-          <LazyLoadImage src={img.nombre} width="100%" effect="blur"/>
+        <div className="col-12 imagenPropiedad mx-2" key={img.idImagen} style={{height:'100%'}}>
+          <LazyLoadImage src={img.nombre} width="100%" effect="blur" height="100%"/>
         </div>
       ))}
     </SlideX>

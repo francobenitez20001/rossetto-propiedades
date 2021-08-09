@@ -84,7 +84,7 @@ const SlideX = (props) => {
 
     return (
         <Slide>
-            <Wrapper id={props.idSlider} sliderMobile={props.sliderMobile}>
+            <Wrapper id={props.idSlider} sliderMobile={props.sliderMobile} height={props.height}>
                 {props.children}
               <Flechas sliderMobile={props.sliderMobile}>
                   <FontAwesomeIcon icon={faArrowLeft} onClick={back} style={{visibility:pagination.activePage==1 ? 'hidden' : 'visible'}}/>
@@ -107,7 +107,7 @@ const SlideX = (props) => {
 const Slide = styled.div`
     position:relative;
     width:100%;
-`;
+    `;
 
 const Flechas = styled.div`
     position: absolute;
@@ -117,19 +117,19 @@ const Flechas = styled.div`
     width: 100%;
     padding: 0px 20px;
     >svg{
-        @media(max-width:768px){
-          display: ${props=>props.sliderMobile ? 'block' : 'none'};
-        }
-        position: relative;
-        cursor: pointer;
-        width: 35px;
-        background-color: var(--primary);
-        color: var(--white);
-        padding: 8px;
-        border-radius: 50%;
-        box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+      @media(max-width:768px){
+        display: ${props=>props.sliderMobile ? 'block' : 'none'};
+      }
+      position: relative;
+      cursor: pointer;
+      width: 35px;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 8px;
+      border-radius: 50%;
+      box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
     }
-`;
+    `;
 
 const Wrapper = styled.div`
     overflow-x: hidden;
@@ -137,14 +137,15 @@ const Wrapper = styled.div`
     padding: 20px 5px;
     position: relative;
     width: 100%;
+    height: ${props=>props.height ? `${props.height}px` : 'auto'};
     >div{
-        transition: all .5s ease;
+      transition: all .5s ease;
     }
 
     @media(max-width:768px){
-        overflow-x: auto;
-        padding: 20px 5px 20px 0px;
-        &::-webkit-scrollbar {
+      overflow-x: auto;
+      padding: 20px 5px 20px 0px;
+      &::-webkit-scrollbar {
             width: 3px;     /* Tamaño del scroll en vertical */
         }
 
